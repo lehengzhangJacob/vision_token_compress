@@ -1,0 +1,28 @@
+\begin{table}[!t]
+  \centering
+  \setlength{\tabcolsep}{3pt}
+  \scalebox{0.8}{
+    \begin{tabular}{lcccccc}
+    \multirow{2}{*}{\textbf{Size}} &  \multirow{2}{*}{\textbf{MVBench}}  &  \multicolumn{4}{c}{\textbf{VideoMME}} & \multirow{2}{*}{\textbf{Avg.}} \\
+        & & \textbf{Overall} & \textbf{Short} & \textbf{Medium} & \textbf{Long}  & \\
+    \shline
+    \textcolor[rgb]{ .502,  .502,  .502}{Vanilla} & 
+    \textcolor[rgb]{ .502,  .502,  .502}{56.9} &
+    \textcolor[rgb]{ .502,  .502,  .502}{58.6} & 
+    \textcolor[rgb]{ .502,  .502,  .502}{70.3} &
+    \textcolor[rgb]{ .502,  .502,  .502}{56.6} &
+    \textcolor[rgb]{ .502,  .502,  .502}{48.8} &
+    \textcolor[rgb]{ .502,  .502,  .502}{100.0} \\
+   \hline
+    4 & 56.8 & 57.9 & 69.6 & 55.6 & 48.7 & 99.1 \\
+    8 & 56.8 & 58.3 & 69.8 & 56.4 & 48.6 & 99.6 \\
+    16 & 57.2 & 58.5 & \textbf{70.0} & \textbf{56.7} & 48.9 & 100.1 \\
+    \rowcolor[rgb]{ .949,  .949,  .949}
+    32 & \textbf{57.2} & \textbf{58.6} & 69.8 & 56.4 & \textbf{49.4} & \textbf{100.1} \\
+    \end{tabular}%
+    }
+  \vspace{-2mm}
+  \caption{\textbf{Effects of different window sizes for local $g_v$ computation.} Window sizes up to 32 (global perspective) are evaluated on LLaVA-OV-7B.}
+  \label{tab:ablation_window_size}%
+  \vspace{-5mm}
+\end{table}%

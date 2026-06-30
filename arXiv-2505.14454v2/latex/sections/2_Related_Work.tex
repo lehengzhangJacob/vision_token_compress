@@ -1,0 +1,16 @@
+\section{Related Work}
+
+\subsection{Video Large Language Models}
+
+
+Large vision-language models (LVLMs) combine vision encoders with LLMs for exceptional visual understanding~\cite{li2024llava-ov,Wang:Qwen2-VL}. While LVLMs can handle basic video tasks, the growing demand has led to specialized video large language models (VideoLLMs)~\cite{zhang2024llava-video,Zhang:Video-LLaMA}. These VideoLLMs enhance video understanding through extensive datasets and targeted training strategies, as demonstrated by LLaVA-OneVision~\cite{li2024llava-ov} for multi-modal tasks and LLaVA-Video~\cite{zhang2024llava-video} for video instruction-following. However, the long sequences of visual tokens from continuous video frames limit their practical applications.
+
+
+
+
+\subsection{Token Compression for LVLMs}
+
+Recently, with the increase in visual tokens in LVLMs, research has shifted from \textit{training-aware}~\cite{Li:TokenPacker} to \textit{training-free} token compression methods~\cite{Yang2024:Visionzip}. Training-free approaches are generally categorized as: \textbf{(a)} Pre-LLM token compression at the ViT or projector level~\cite{Zhang:FasterVLM,liu2025globalcom2}; \textbf{(b)} Intra-LLM token compression within the LLM decoder~\cite{Chen:FastV,Zhang:SparseVLM,chen2025v2drop}; and \textbf{(c)} Hybrid token compression that compresses tokens at both ViT and LLM~\cite{Han2024:FiCoCo}. However, these methods treat video frames as separate images, overlooking temporal relationships. While recent work DyCoke~\cite{tao2024dycoke} introduces temporal token merging across consecutive frame windows, it cannot achieve retention ratios below 25\%. More importantly, existing methods, including DyCoke, adopt uniform compression across frames without considering frame uniqueness, and many face compatibility issues with efficient operators~\cite{Dao2022:FlashAttention}.
+
+
+In this work, we propose a plug-and-play efficient token compression strategy that leverages frame-specific features to tackle current challenges in efficient VideoLLM inference.

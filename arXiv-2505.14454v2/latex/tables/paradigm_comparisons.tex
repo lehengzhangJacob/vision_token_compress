@@ -1,0 +1,25 @@
+
+\begin{table}[!t]
+  \centering
+  \setlength{\tabcolsep}{0.4pt} % 调整列间距
+    \scalebox{0.73}{\begin{tabular}{lcccccc}
+    \multirow{2}{*}{\textbf{Methods}} & \textbf{Pre-} & \textbf{Intra-} & \textbf{\texttt{[CLS]}} & \textbf{Video-} & \textbf{Frame} & \textbf{Efficient} \\
+    
+    & \textbf{LLM} & \textbf{LLM} & \textbf{Dependency} & \textbf{Specific} & \textbf{Uniqueness} & \textbf{Attention} \\
+    \shline
+     FastV &  & \cmark &  &  &  &  \\
+     PDrop &  & \cmark &  &  &  &  \\
+     SparseVLM &  & \cmark &  &  &  & \\
+     MUSTDrop & \cmark & \cmark & \cmark &  &  &  \\
+     FiCoCo & \cmark & \cmark & \cmark &  &  &  \\
+     FasterVLM & \cmark &  & \cmark &  &  & \cmark \\
+     DyCoke & \cmark &  &  & \cmark &   & \cmark \\
+    \rowcolor[rgb]{ .949,  .949,  .949}
+    \textbf{VidCom$^2$} & \cmark &  &  & \cmark &  \cmark & \cmark \\
+    \end{tabular}%
+    }
+    \vspace{-2mm}
+  \caption{\textbf{Feature comparison with existing training-free token compression methods.} Most suffer from design myopia and implementation constraints.}
+  \label{tab:para_comparsion}%
+  \vspace{-5mm}
+\end{table}%

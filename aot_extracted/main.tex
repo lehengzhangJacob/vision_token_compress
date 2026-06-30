@@ -1,0 +1,105 @@
+% CVPR 2026 Paper Template; see https://github.com/cvpr-org/author-kit
+
+\documentclass[10pt,twocolumn,letterpaper]{article}
+
+%%%%%%%%% PAPER TYPE  - PLEASE UPDATE FOR FINAL VERSION
+\usepackage{cvpr}              % To produce the CAMERA-READY version
+% \usepackage[review]{cvpr}      % To produce the REVIEW version
+% \usepackage[pagenumbers]{cvpr} % To force page numbers, e.g. for an arXiv version
+
+
+% Import additional packages in the preamble file, before hyperref
+\input{preamble}
+
+% It is strongly recommended to use hyperref, especially for the review version.
+% hyperref with option pagebackref eases the reviewers' job.
+% Please disable hyperref *only* if you encounter grave issues, 
+% e.g. with the file validation for the camera-ready version.
+%
+% If you comment hyperref and then uncomment it, you should delete *.aux before re-running LaTeX.
+% (Or just hit 'q' on the first LaTeX run, let it finish, and you should be clear).
+\definecolor{cvprblue}{rgb}{0.21,0.49,0.74}
+\usepackage[pagebackref,breaklinks,colorlinks,allcolors=cvprblue]{hyperref}
+
+% This is the preamble file
+\usepackage{multirow}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{algorithm}
+\usepackage{algorithmicx}
+\usepackage{algpseudocode}
+\usepackage{tabu}
+\usepackage{siunitx}
+\usepackage{adjustbox}
+\usepackage{siunitx}
+\usepackage{makecell}
+\usepackage{xcolor}
+\usepackage{colortbl}
+\usepackage{color}
+\usepackage{bm}
+\usepackage{multirow}
+\usepackage{blindtext}
+\usepackage{comment}
+\usepackage{bbm}
+\usepackage{booktabs}
+\usepackage{wrapfig}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage[accsupp]{axessibility}  % Improves PDF readability for those with disabilities.
+%%%%%%%%% PAPER ID  - PLEASE UPDATE
+% \def\paperID{2328} % *** Enter the Paper ID here
+\def\paperID{} % *** Enter the Paper ID here
+\def\confName{CVPR}
+\def\confYear{2026}
+
+%%%%%%%%% TITLE - PLEASE UPDATE
+\title{Token Reduction via Local and Global Contexts Optimization for Efficient Video Large Language Models}
+
+% \title{Token Reduction via Local and Global Contexts Optimization for Efficient Video Large Language Models \\ Supplementary Material}
+
+% \title{
+%     Token Reduction via Local and Global Contexts Optimization for Efficient Video Large Language Models\\[0.2em]
+%     % {\normalfont\normalsize Supplementary Material}
+%     {\normalfont ------ Supplementary Material ------}
+% }
+
+%%%%%%%%% AUTHORS - PLEASE UPDATE
+\author{Jinlong Li$^{1,\dagger}$ ~~~~~~~ {Liyuan Jiang}$^{2}$ ~~~~~~~ {Haonan Zhang}$^{3}$  ~~~~~~~  {Nicu Sebe$^{1}$} \\
+$^1$ University of Trento \\ $^2$ Tsinghua University \\ $^3$ University of Electronic Science and Technology of China
+}
+
+\begin{document}
+\maketitle
+
+\newcommand\blfootnote[1]{% 
+\begingroup 
+\renewcommand\thefootnote{}\footnote{#1}% 
+\addtocounter{footnote}{-1}% 
+\endgroup 
+}
+    {
+        \blfootnote{
+          $^\dagger$Corresponding author: tyronejinlongli@gmail.com.
+    
+    }
+}
+
+\input{sec/0_abstract}    
+\input{sec/1_introduction}
+\input{sec/2_related_work}
+\input{sec/3_method}
+\input{sec/4_experiment}
+\input{sec/5_conclusion}
+\input{sec/acknowledgement}
+\input{sec/6_suppl}
+
+{
+    \small
+    \bibliographystyle{ieeenat_fullname}
+    \bibliography{main}
+}
+
+% WARNING: do not forget to delete the supplementary pages from your submission 
+% \input{sec/X_suppl}
+
+\end{document}

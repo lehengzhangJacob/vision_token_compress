@@ -1,0 +1,50 @@
+\begin{algorithm}[t]
+\caption{VidCom$^2$: Plug-and-Play Token Compression for VideoLLMs}
+\label{alg:vidcom2}
+\begin{algorithmic}[1]
+\Require  
+Video tokens $\mathbf{X}^v = \{\mathbf{x}_{t,m}^v\}_{t=1,m=1}^{T,M}$,  
+Preset retention ratio $R\in(0,1]$,  
+Temperature $\tau>0$,  
+Stability epsilon $\epsilon>0$
+\Ensure Compressed tokens $\{\hat{\mathbf{X}}_t^v\}_{t=1}^T$
+
+\State \textbf{Stage 1: Frame Compression Adjustment}  
+\State // 1. Compute global summary  
+\State $\displaystyle \mathbf{g}_v \leftarrow \tfrac{1}{T\cdot M}\sum_{t=1}^T\sum_{m=1}^M \mathbf{x}_{t,m}^v$
+\State // 2. Token–video similarity  
+\For{$t=1\to T,\ m=1\to M$}
+  \State $s^\mathrm{video}_{t,m}\leftarrow \dfrac{\mathbf{x}_{t,m}^v\cdot\mathbf{g}_v}{\|\mathbf{x}_{t,m}^v\|\|\mathbf{g}_v\|}$
+  \State $u_{t,m}^\text{video}\leftarrow -\,s^\mathrm{video}_{t,m}$
+\EndFor
+    \State // 3. Frame uniqueness  
+\For{$t=1\to T$}
+  \State $u_t\leftarrow \frac{1}{M}\sum_{m=1}^{M} u^\mathrm{video}_{t,m}$
+\EndFor
+    \State // 4. Normalize \& weigh  
+\For{$t=1\to T$}
+  \State $\tilde u_t\leftarrow (u_t - \max_k u_k)/\tau$
+  \State $\sigma_t\leftarrow \exp(\tilde u_t)\,/\,(\sum_{k=1}^T\exp(\tilde u_k)+\epsilon)$
+  \State $r_t\leftarrow R\bigl(1 + \sigma_t - \tfrac1T\bigr)$  
+\EndFor
+
+\State \textbf{Stage 2: Adaptive Token Compression} 
+\For{$t=1\to T$}
+  \State // 1. Frame-level token uniqueness  
+  \State $\mathbf{g}_{f,t}\leftarrow \tfrac{1}{M}\sum_{m=1}^M \mathbf{x}_{t,m}^v$
+  \For{$m=1\to M$}
+    \State $s_{t,m}^\text{frame}\leftarrow \,\dfrac{\mathbf{x}_{t,m}^v\!\cdot\!\mathbf{g}_{f,t}}{\|\mathbf{x}_{t,m}^v\|\|\mathbf{g}_{f,t}\|}$
+    \State $u_{t,m}^\text{frame} \leftarrow -s_{t,m}^\text{frame}$
+  \EndFor
+  \State // 2. Combine video \& frame uniqueness  
+  \For{$m=1\to M$}
+    \State $u_{t,m}\leftarrow u_{t,m}^\text{video} + u_{t,m}^\text{frame}$
+  \EndFor
+  \State // 3. Top-$k$ selection  
+  \State $k_t\leftarrow \lceil r_t \times M\rceil$
+  \State $\hat{\mathbf{X}}_t^v \leftarrow \text{TopK}(\{\mathbf{x}_{t,m}^v\}, \{u_{t,m}\}, k_t)$
+\EndFor
+
+\State \Return $\{\hat{\mathbf{X}}_t^v\}_{t=1}^T$
+\end{algorithmic}
+\end{algorithm}

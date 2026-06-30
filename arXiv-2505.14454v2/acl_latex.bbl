@@ -1,0 +1,169 @@
+\begin{thebibliography}{33}
+\providecommand{\natexlab}[1]{#1}
+
+\bibitem[{Bolya et~al.(2023)Bolya, Fu, Dai, Zhang, Feichtenhofer, and Hoffman}]{Bolya:ToMe}
+Daniel Bolya, Cheng{-}Yang Fu, Xiaoliang Dai, Peizhao Zhang, Christoph Feichtenhofer, and Judy Hoffman. 2023.
+\newblock Token merging: Your {ViT} but faster.
+\newblock In \emph{Proceedings of the International Conference on Learning Representations}.
+
+\bibitem[{Chen et~al.(2025)Chen, Liu, Wen, Wang, Huang, and Chen}]{chen2025v2drop}
+Junjie Chen, Xuyang Liu, Zichen Wen, Yiyu Wang, Siteng Huang, and Honggang Chen. 2025.
+\newblock Variation-aware vision token dropping for faster large vision-language models.
+\newblock \emph{arXiv preprint arXiv:2509.01552}.
+
+\bibitem[{Chen et~al.(2024{\natexlab{a}})Chen, Zhao, Liu, Bai, Lin, Zhou, and Chang}]{Chen:FastV}
+Liang Chen, Haozhe Zhao, Tianyu Liu, Shuai Bai, Junyang Lin, Chang Zhou, and Baobao Chang. 2024{\natexlab{a}}.
+\newblock An image is worth 1/2 tokens after layer 2: Plug-and-play inference acceleration for large vision-language models.
+\newblock In \emph{Proceedings of the European Conference on Computer Vision}.
+
+\bibitem[{Chen et~al.(2024{\natexlab{b}})Chen, Xue, Li, Hu, Zhu, Li, Fang, Tang, Yang, Liu et~al.}]{chen2024longvila}
+Yukang Chen, Fuzhao Xue, Dacheng Li, Qinghao Hu, Ligeng Zhu, Xiuyu Li, Yunhao Fang, Haotian Tang, Shang Yang, Zhijian Liu, and 1 others. 2024{\natexlab{b}}.
+\newblock Longvila: Scaling long-context visual language models for long videos.
+\newblock \emph{arXiv preprint arXiv:2408.10188}.
+
+\bibitem[{Dao(2024)}]{daoFlashAttention-2}
+Tri Dao. 2024.
+\newblock Flashattention-2: Faster attention with better parallelism and work partitioning.
+\newblock In \emph{Proceedings of the International Conference on Learning Representations}.
+
+\bibitem[{Dao et~al.(2022)Dao, Fu, Ermon, Rudra, and Ré}]{Dao2022:FlashAttention}
+Tri Dao, Daniel~Y. Fu, Stefano Ermon, Atri Rudra, and Christopher Ré. 2022.
+\newblock Flashattention: Fast and memory-efficient exact attention with io-awareness.
+\newblock In \emph{Proceedings of the Advances in Neural Information Processing Systems}.
+
+\bibitem[{Fu et~al.(2024)Fu, Dai, Luo, Li, Ren, Zhang, Wang, Zhou, Shen, Zhang et~al.}]{fu2024videomme}
+Chaoyou Fu, Yuhan Dai, Yongdong Luo, Lei Li, Shuhuai Ren, Renrui Zhang, Zihan Wang, Chenyu Zhou, Yunhang Shen, Mengdan Zhang, and 1 others. 2024.
+\newblock Video-mme: The first-ever comprehensive evaluation benchmark of multi-modal llms in video analysis.
+\newblock \emph{arXiv preprint arXiv:2405.21075}.
+
+\bibitem[{Han et~al.(2024)Han, Liu, Ding, Wang, Chen, Yan, and Huang}]{Han2024:FiCoCo}
+Yuhang Han, Xuyang Liu, Pengxiang Ding, Donglin Wang, Honggang Chen, Qingsen Yan, and Siteng Huang. 2024.
+\newblock Rethinking token reduction in mllms: Towards a unified paradigm for training-free acceleration.
+\newblock \emph{arXiv preprint arXiv:2411.17686}.
+
+\bibitem[{Li et~al.(2024{\natexlab{a}})Li, Zhang, Guo, Zhang, Li, Zhang, Zhang, Li, Liu, and Li}]{li2024llava-ov}
+Bo~Li, Yuanhan Zhang, Dong Guo, Renrui Zhang, Feng Li, Hao Zhang, Kaichen Zhang, Yanwei Li, Ziwei Liu, and Chunyuan Li. 2024{\natexlab{a}}.
+\newblock Llava-onevision: Easy visual task transfer.
+\newblock \emph{arXiv preprint arXiv:2408.03326}.
+
+\bibitem[{Li et~al.(2024{\natexlab{b}})Li, Wang, He, Li, Wang, Liu, Wang, Xu, Chen, Luo et~al.}]{li2024mvbench}
+Kunchang Li, Yali Wang, Yinan He, Yizhuo Li, Yi~Wang, Yi~Liu, Zun Wang, Jilan Xu, Guo Chen, Ping Luo, and 1 others. 2024{\natexlab{b}}.
+\newblock Mvbench: A comprehensive multi-modal video understanding benchmark.
+\newblock In \emph{Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition}, pages 22195--22206.
+
+\bibitem[{Li et~al.(2024{\natexlab{c}})Li, Yuan, Liu, Tang, Wang, Zhu, and Zhang}]{Li:TokenPacker}
+Wentong Li, Yuqian Yuan, Jian Liu, Dongqi Tang, Song Wang, Jianke Zhu, and Lei Zhang. 2024{\natexlab{c}}.
+\newblock {TokenPacker}: Efficient visual projector for multimodal {LLM}.
+\newblock \emph{arXiv preprint arXiv:2407.02392}.
+
+\bibitem[{Liu et~al.(2024)Liu, Shi, Hong, Hu, Yin, and Zhang}]{Liu2024:MUSTDrop}
+Ting Liu, Liangtao Shi, Richang Hong, Yue Hu, Quanjun Yin, and Linfeng Zhang. 2024.
+\newblock Multi-stage vision token dropping: Towards efficient multimodal large language model.
+\newblock \emph{arXiv preprint arXiv:2411.10803}.
+
+\bibitem[{Liu et~al.(2025{\natexlab{a}})Liu, Wang, Han, Wang, Yuan, Song, Zheng, Zhang, Huang, and Chen}]{liu2025globalcom2}
+Xuyang Liu, Ziming Wang, Yuhang Han, Yingyao Wang, Jiale Yuan, Jun Song, Bo~Zheng, Linfeng Zhang, Siteng Huang, and Honggang Chen. 2025{\natexlab{a}}.
+\newblock Global compression commander: Plug-and-play inference acceleration for high-resolution large vision-language models.
+\newblock \emph{arXiv preprint arXiv:2501.05179}.
+
+\bibitem[{Liu et~al.(2025{\natexlab{b}})Liu, Wen, Wang, Chen, Tao, Wang, Jin, Zou, Wang, Liao et~al.}]{liu2025shifting}
+Xuyang Liu, Zichen Wen, Shaobo Wang, Junjie Chen, Zhishan Tao, Yubo Wang, Xiangqi Jin, Chang Zou, Yiyu Wang, Chenfei Liao, and 1 others. 2025{\natexlab{b}}.
+\newblock Shifting ai efficiency from model-centric to data-centric compression.
+\newblock \emph{arXiv preprint arXiv:2505.19147}.
+
+\bibitem[{Ma et~al.(2025)Ma, Zhang, Lu, Wang, Zhou, Song, and Zhang}]{ma2025mmg-vid}
+Junpeng Ma, Qizhe Zhang, Ming Lu, Zhibin Wang, Qiang Zhou, Jun Song, and Shanghang Zhang. 2025.
+\newblock Mmg-vid: Maximizing marginal gains at segment-level and token-level for efficient video llms.
+\newblock \emph{arXiv preprint arXiv:2508.21044}.
+
+\bibitem[{Mangalam et~al.(2023)Mangalam, Akshulakov, and Malik}]{mangalam2023egoschema}
+Karttikeya Mangalam, Raiymbek Akshulakov, and Jitendra Malik. 2023.
+\newblock Egoschema: A diagnostic benchmark for very long-form video language understanding.
+\newblock In \emph{Proceedings of the Advances in Neural Information Processing Systems}, volume~36, pages 46212--46244.
+
+\bibitem[{Patraucean et~al.(2023)Patraucean, Smaira, Gupta, Recasens, Markeeva, Banarse, Koppula, Malinowski, Yang, Doersch et~al.}]{patraucean2023perception}
+Viorica Patraucean, Lucas Smaira, Ankush Gupta, Adria Recasens, Larisa Markeeva, Dylan Banarse, Skanda Koppula, Mateusz Malinowski, Yi~Yang, Carl Doersch, and 1 others. 2023.
+\newblock Perception test: A diagnostic benchmark for multimodal video models.
+\newblock In \emph{Proceedings of the Advances in Neural Information Processing Systems}, volume~36, pages 42748--42761.
+
+\bibitem[{Sun et~al.(2025)Sun, Lu, Wang, Chen, Xu, Luo, Zhang, and Li}]{sun2025mdp3}
+Hui Sun, Shiyin Lu, Huanyu Wang, Qing-Guo Chen, Zhao Xu, Weihua Luo, Kaifu Zhang, and Ming Li. 2025.
+\newblock Mdp3: A training-free approach for list-wise frame selection in video-llms.
+\newblock \emph{arXiv preprint arXiv:2501.02885}.
+
+\bibitem[{Tao et~al.(2025)Tao, Qin, You, Sui, and Wang}]{tao2024dycoke}
+Keda Tao, Can Qin, Haoxuan You, Yang Sui, and Huan Wang. 2025.
+\newblock Dycoke: Dynamic compression of tokens for fast video large language models.
+\newblock In \emph{Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition}.
+
+\bibitem[{Wang et~al.(2024)Wang, Bai, Tan, Wang, Fan, Bai, Chen, Liu, Wang, Ge, Fan, Dang, Du, Ren, Men, Liu, Zhou, Zhou, and Lin}]{Wang:Qwen2-VL}
+Peng Wang, Shuai Bai, Sinan Tan, Shijie Wang, Zhihao Fan, Jinze Bai, Keqin Chen, Xuejing Liu, Jialin Wang, Wenbin Ge, Yang Fan, Kai Dang, Mengfei Du, Xuancheng Ren, Rui Men, Dayiheng Liu, Chang Zhou, Jingren Zhou, and Junyang Lin. 2024.
+\newblock {Qwen2-VL}: Enhancing vision-language model's perception of the world at any resolution.
+\newblock \emph{arXiv preprint arXiv:2409.12191}.
+
+\bibitem[{Wang et~al.(2025)Wang, Li, Yan, He, Yu, Zeng, Wang, Ma, Huang, Gao et~al.}]{wang2025internvideo2.5}
+Yi~Wang, Xinhao Li, Ziang Yan, Yinan He, Jiashuo Yu, Xiangyu Zeng, Chenting Wang, Changlian Ma, Haian Huang, Jianfei Gao, and 1 others. 2025.
+\newblock Internvideo2. 5: Empowering video mllms with long and rich context modeling.
+\newblock \emph{arXiv preprint arXiv:2501.12386}.
+
+\bibitem[{Wen et~al.(2025{\natexlab{a}})Wen, Gao, Li, He, and Zhang}]{wen2025token}
+Zichen Wen, Yifeng Gao, Weijia Li, Conghui He, and Linfeng Zhang. 2025{\natexlab{a}}.
+\newblock Token pruning in multimodal large language models: Are we solving the right problem?
+\newblock In \emph{Findings of the Association for Computational Linguistics: ACL 2025}, pages 15537--15549.
+
+\bibitem[{Wen et~al.(2025{\natexlab{b}})Wen, Gao, Wang, Zhang, Zhang, Li, He, and Zhang}]{wen2025dart}
+Zichen Wen, Yifeng Gao, Shaobo Wang, Junyuan Zhang, Qintong Zhang, Weijia Li, Conghui He, and Linfeng Zhang. 2025{\natexlab{b}}.
+\newblock Stop looking for important tokens in multimodal language models: Duplication matters more.
+\newblock \emph{arXiv preprint arXiv:2502.11494}.
+
+\bibitem[{Wu et~al.(2024)Wu, Li, Chen, and Li}]{wu2024longvideobench}
+Haoning Wu, Dongxu Li, Bei Chen, and Junnan Li. 2024.
+\newblock Longvideobench: A benchmark for long-context interleaved video-language understanding.
+\newblock In \emph{Proceedings of the Advances in Neural Information Processing Systems}, volume~37, pages 28828--28857.
+
+\bibitem[{Xing et~al.(2025)Xing, Huang, Dong, Lu, Zhang, Zang, Cao, He, Wang, Wu et~al.}]{xing2024pdrop}
+Long Xing, Qidong Huang, Xiaoyi Dong, Jiajie Lu, Pan Zhang, Yuhang Zang, Yuhang Cao, Conghui He, Jiaqi Wang, Feng Wu, and 1 others. 2025.
+\newblock Pyramiddrop: Accelerating your large vision-language models via pyramid visual redundancy reduction.
+\newblock In \emph{Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition}.
+
+\bibitem[{Yang et~al.(2025)Yang, Chen, Tian, Wang, Li, Yu, and Jia}]{Yang2024:Visionzip}
+Senqiao Yang, Yukang Chen, Zhuotao Tian, Chengyao Wang, Jingyao Li, Bei Yu, and Jiaya Jia. 2025.
+\newblock Visionzip: Longer is better but not necessary in vision language models.
+\newblock In \emph{Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition}.
+
+\bibitem[{Zhai et~al.(2023)Zhai, Mustafa, Kolesnikov, and Beyer}]{ZhaiM0B23:SigLIP}
+Xiaohua Zhai, Basil Mustafa, Alexander Kolesnikov, and Lucas Beyer. 2023.
+\newblock Sigmoid loss for language image pre-training.
+\newblock In \emph{Proceedings of the IEEE/CVF International Conference on Computer Vision}, pages 11941--11952.
+
+\bibitem[{Zhang et~al.(2023)Zhang, Li, and Bing}]{Zhang:Video-LLaMA}
+Hang Zhang, Xin Li, and Lidong Bing. 2023.
+\newblock {Video-LLaMA}: An instruction-tuned audio-visual language model for video understanding.
+\newblock In \emph{Proceedings of the Conference on Empirical Methods in Natural Language Processing}, pages 543--553.
+
+\bibitem[{Zhang et~al.(2024{\natexlab{a}})Zhang, Li, Zhang, Pu, Cahyono, Hu, Liu, Zhang, Yang, Li et~al.}]{zhang2024lmms}
+Kaichen Zhang, Bo~Li, Peiyuan Zhang, Fanyi Pu, Joshua~Adrian Cahyono, Kairui Hu, Shuai Liu, Yuanhan Zhang, Jingkang Yang, Chunyuan Li, and 1 others. 2024{\natexlab{a}}.
+\newblock Lmms-eval: Reality check on the evaluation of large multimodal models.
+\newblock \emph{arXiv preprint arXiv:2407.12772}.
+
+\bibitem[{Zhang et~al.(2024{\natexlab{b}})Zhang, Cheng, Lu, Zhuo, Wang, Cao, Guo, She, and Zhang}]{Zhang:FasterVLM}
+Qizhe Zhang, Aosong Cheng, Ming Lu, Zhiyong Zhuo, Minqi Wang, Jiajun Cao, Shaobo Guo, Qi~She, and Shanghang Zhang. 2024{\natexlab{b}}.
+\newblock {[CLS]} attention is all you need for training-free visual token pruning: Make vlm inference faster.
+\newblock \emph{arXiv preprint arXiv:2412.01818}.
+
+\bibitem[{Zhang et~al.(2025)Zhang, Fan, Ma, Zheng, Huang, Cheng, Gudovskiy, Okuno, Nakata, Keutzer, and Zhang}]{Zhang:SparseVLM}
+Yuan Zhang, Chun-Kai Fan, Junpeng Ma, Wenzhao Zheng, Tao Huang, Kuan Cheng, Denis Gudovskiy, Tomoyuki Okuno, Yohei Nakata, Kurt Keutzer, and Shanghang Zhang. 2025.
+\newblock {SparseVLM}: Visual token sparsification for efficient vision-language model inference.
+\newblock In \emph{Proceedings of the International Conference on Machine Learning}.
+
+\bibitem[{Zhang et~al.(2024{\natexlab{c}})Zhang, Wu, Li, Li, Ma, Liu, and Li}]{zhang2024llava-video}
+Yuanhan Zhang, Jinming Wu, Wei Li, Bo~Li, Zejun Ma, Ziwei Liu, and Chunyuan Li. 2024{\natexlab{c}}.
+\newblock Video instruction tuning with synthetic data.
+\newblock \emph{arXiv preprint arXiv:2410.02713}.
+
+\bibitem[{Zhou et~al.(2024)Zhou, Shu, Zhao, Wu, Xiao, Yang, Xiong, Zhang, Huang, and Liu}]{zhou2024mlvu}
+Junjie Zhou, Yan Shu, Bo~Zhao, Boya Wu, Shitao Xiao, Xi~Yang, Yongping Xiong, Bo~Zhang, Tiejun Huang, and Zheng Liu. 2024.
+\newblock Mlvu: A comprehensive benchmark for multi-task long video understanding.
+\newblock \emph{arXiv preprint arXiv:2406.04264}.
+
+\end{thebibliography}

@@ -1,0 +1,24 @@
+\begin{table}[!t]
+\tablestyle{5pt}{1.0}
+\newcommand{\downtiny}[1]{{\!\tiny{#1}}}
+\setlength\tabcolsep{8.8pt}
+\scalebox{1}{
+    \begin{tabular}{lcc}
+    \textbf{Methods} & \textbf{EgoSchema} & \textbf{PerceptionTest} \\
+    \shline
+    \multicolumn{3}{l}{\textit{Upper Bound}} \\
+    \textcolor[rgb]{.502,.502,.502}{LLaVA-OV-7B} & \textcolor[rgb]{.502,.502,.502}{60.4 (100\%)} & \textcolor[rgb]{.502,.502,.502}{57.1 (100\%)} \\
+    \hline
+    \multicolumn{3}{l}{\textit{Retention Ratio=25\%}} \\
+    FastV \downtiny{[ECCV'24]} & 57.5 (95.2\%) & 55.4 (97.0\%) \\
+    PDrop \downtiny{[CVPR'25]} & 58.0 (96.0\%) & 55.6 (97.4\%) \\
+    DyCoke \downtiny{[CVPR'25]} & 59.5 (98.5\%) & 56.4 (98.8\%) \\
+    \rowcolor[rgb]{.949,.949,.949}
+    \textbf{VidCom$^2$} & \textbf{59.7 (98.8\%)} & \textbf{56.7 (99.3\%)} \\
+    \end{tabular}
+}
+\vspace{-2mm}
+\caption{\textbf{Performance comparison on EgoSchema and PerceptionTest.} Percentages represent ratios to the original performance of LLaVA-OV-7B.}
+\vspace{-5mm}
+\label{tab:more_comparisons}
+\end{table}

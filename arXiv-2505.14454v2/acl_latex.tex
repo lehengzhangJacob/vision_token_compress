@@ -1,0 +1,116 @@
+% This must be in the first 5 lines to tell arXiv to use pdfLaTeX, which is strongly recommended.
+\pdfoutput=1
+% In particular, the hyperref package requires pdfLaTeX in order to break URLs across lines.
+
+\documentclass[11pt]{article}
+
+% Change "review" to "final" to generate the final (sometimes called camera-ready) version.
+% Change to "preprint" to generate a non-anonymous version with page numbers.
+\usepackage[preprint]{acl}
+
+% Standard package includes
+\usepackage{times}
+\usepackage{latexsym}
+
+% For proper rendering and hyphenation of words containing Latin characters (including in bib files)
+\usepackage[T1]{fontenc}
+% For Vietnamese characters
+% \usepackage[T5]{fontenc}
+% See https://www.latex-project.org/help/documentation/encguide.pdf for other character sets
+
+% This assumes your files are encoded as UTF8
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{bm}
+\usepackage{algorithm}
+\usepackage{algorithmicx}
+\usepackage{algpseudocode}
+\usepackage{wrapfig}
+
+\usepackage{bbding}
+
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}      % for well‐spaced tables if needed
+\usepackage{multirow}      % for multirow cells in tables
+\usepackage{xcolor}        % for row coloring in tables
+\usepackage{graphicx}      % for figures
+\usepackage{caption}       % for caption control
+\usepackage{subcaption}    % if you need subfigures
+
+% This is not strictly necessary, and may be commented out,
+% but it will improve the layout of the manuscript,
+% and will typically save some space.
+\usepackage{microtype}
+
+% This is also not strictly necessary, and may be commented out.
+% However, it will improve the aesthetics of text in
+% the typewriter font.
+\usepackage{inconsolata}
+
+\usepackage[T1]{fontenc}
+\usepackage{colortbl}
+\usepackage{booktabs,multirow}
+\usepackage{makecell}
+\usepackage{tabulary}
+\usepackage{fontawesome5}
+\usepackage{pifont}
+\usepackage{tikz}
+
+\newcommand \blfootnote[1]{
+    \begingroup
+        \renewcommand
+        \thefootnote{}\footnote{#1}
+        \addtocounter{footnote}{-1}
+        \vspace{-1ex}
+    \endgroup
+}
+\newlength\savewidth\newcommand\shline{\noalign{\global\savewidth\arrayrulewidth
+  \global\arrayrulewidth 1pt}\hline\noalign{\global\arrayrulewidth\savewidth}}
+\newcommand\hshline{\noalign{\global\savewidth\arrayrulewidth
+  \global\arrayrulewidth 0.6pt}\hline\noalign{\global\arrayrulewidth\savewidth}}
+\newcommand{\tablestyle}[2]{\setlength{\tabcolsep}{#1}\renewcommand{\arraystretch}{#2}\centering\footnotesize}
+
+\newcommand{\cmark}{\ding{51}}%
+\newcommand{\xmark}{\ding{55}}%
+
+%Including images in your LaTeX document requires adding
+%additional package(s)
+
+% If the title and author information does not fit in the area allocated, uncomment the following
+%
+%\setlength\titlebox{<dim>}
+%
+% and set <dim> to something 5cm or larger.
+
+\title{Video Compression Commander: \\ Plug-and-Play Inference Acceleration for Video Large Language Models}
+
+
+
+\author{Xuyang Liu$^{1,2}$\thanks{Equal contribution.  Work done during a visit to the EPIC Lab at Shanghai Jiao Tong University. \\ \text{\Envelope} Corresponding author: zhanglinfeng@sjtu.edu.cn} \quad Yiyu Wang$^{1*}$ \quad Junpeng Ma$^{3}$ \quad Linfeng Zhang$^{1}$$^{\text{\Envelope}}$ \\
+$^{1}$Shanghai Jiao Tong University \quad
+$^{2}$Sichuan University \quad
+$^{3}$Fudan University \\
+}
+\begin{document}
+\maketitle
+
+
+
+\input{latex/sections/0_Abstract}
+\input{latex/sections/1_Introduction}
+\input{latex/sections/2_Related_Work}
+\input{latex/sections/3_Methodology}
+\input{latex/sections/4_Experiments}
+\input{latex/sections/5_Conclusion}
+\input{latex/sections/6_Limitations}
+\input{latex/sections/7_Acknowledgement}
+
+
+\bibliography{custom}
+
+\input{latex/sections/X_Appendix}
+\end{document}

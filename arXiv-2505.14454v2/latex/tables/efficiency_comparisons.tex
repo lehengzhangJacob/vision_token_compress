@@ -1,0 +1,62 @@
+\definecolor{greenrightcolor}{RGB}{0,144,81} 
+\definecolor{redrightcolor}{RGB}{255,0,0} 
+\definecolor{bluerightcolor}{RGB}{0,0,255} % 
+
+\newcommand{\downtinya}[1]{{\!\textcolor{greenrightcolor}{\tiny{#1}}}}
+\newcommand{\uptiny}[1]{{\!\textcolor{redrightcolor}{\tiny{#1}}}}
+\newcommand{\downtinyb}[1]{{\!\textcolor{bluerightcolor}{\tiny{#1}}}}
+
+\newcommand{\downtiny}[1]{{\!\tiny{#1}}}
+
+\begin{table*}[!t]
+\tablestyle{5pt}{1.0}
+  \centering
+  \setlength{\tabcolsep}{0.5pt} 
+    \scalebox{1}{
+    \begin{tabular}{lccccccc}
+    \multirow{2}{*}{\textbf{Methods}} & \textbf{LLM Generation↓} & \textbf{Model Generation↓} & \textbf{Total↓}  & \textbf{GPU Peak↓} & \textbf{Throughput↑} & \multirow{2}{*}{\textbf{Performance↑}} \\
+    & \textbf{Latency (s)} & \textbf{Latency (s)} & \textbf{Latency (min:sec)} & \textbf{Memory (GB)} & \textbf{(samples/s)} &  \\
+    \shline
+    \textcolor[rgb]{ .502,  .502,  .502}{LLaVA-OV-7B} & \textcolor[rgb]{ .502,  .502,  .502}{618.0} & \textcolor[rgb]{ .502,  .502,  .502}{1008.4} & 
+    \textcolor[rgb]{ .502,  .502,  .502}{26:03} & 
+    \textcolor[rgb]{ .502,  .502,  .502}{17.7} & 
+    \textcolor[rgb]{ .502,  .502,  .502}{0.64} & \textcolor[rgb]{ .502,  .502,  .502}{56.9} \\
+    
+    \hline
+    \multicolumn{7}{l}{\textit{Retention Ratio=25\%}} \\
+    Random  & 178.2 \downtinya{(↓71.2\%)} & 566.0 \downtinya{(↓43.9\%)} & 18:44 \downtinya{(↓28.1\%)} & 16.0 \downtinya{(↓9.6\%)} & 0.89 \downtinya{(1.39$\times$)} & 54.6 \downtinya{(↓2.3)} \\
+
+    \hline
+    
+    FastV \downtiny{[ECCV'24]}  & 260.9 \downtinya{(↓57.8\%)} & 648.6 \downtinya{(↓35.7\%)} & 20:07 \downtinya{(↓22.8\%)} & 24.7 \uptiny{(↑39.5\%)} & 0.83 \downtinya{(1.30$\times$)} &  55.5 \downtinya{(↓1.4)}  \\
+    
+    PDrop \downtiny{[CVPR'25]}  & 205.6 \downtinya{(↓66.7\%)} & 592.6 \downtinya{(↓41.2\%)} & 18:50 \downtinya{(↓27.7\%)} & 24.5 \uptiny{(↑38.4\%)} & 0.88 \downtinya{(1.38$\times$)} &  55.3 \downtinya{(↓1.6)}  \\
+    
+    SparseVLM \downtiny{[ICML'25]}  & 410.6 \downtinya{(↓33.6\%)} & 807.7 \downtinya{(↓19.9\%)} & 25:03 \downtinya{(↓3.8\%)} & 27.1 \uptiny{(↑53.1\%)} & 0.67 \downtinya{(1.05$\times$)} & 56.4 \downtinya{(↓0.5)} \\
+    
+    DyCoke \downtiny{[CVPR'25]}  & 205.2 \downtinya{(↓66.8\%)} & 598.0 \downtinya{(↓40.7\%)} & 18:56 \downtinya{(↓27.4\%)} & 16.1 \downtinya{(↓9.0\%)} & 0.88 \downtinya{(1.38$\times$)} & 49.5 \downtinya{(↓7.4)} \\
+    
+    \rowcolor[rgb]{ .949,  .949,  .949} \textbf{VidCom$^2$}  & \textbf{180.7 \downtinya{(↓70.8\%)}} & \textbf{574.7 \downtinya{(↓43.0\%)}} & \textbf{18:46 \downtinya{(↓28.0\%)}} & \textbf{16.0 \downtinya{(↓9.6\%)}} & \textbf{0.88 \downtinya{(1.38$\times$)}} & \textbf{57.2 \uptiny{(↑0.3)}} \\
+    
+    \hline
+    \multicolumn{7}{l}{\textit{Retention Ratio=15\%}} \\
+    Random  & 130.3 \downtinya{(↓78.9\%)} & 532.5 \downtinya{(↓47.2\%)} & 18:02 \downtinya{(↓30.8\%)} & 15.8 \downtinya{(↓10.7\%)} & 0.92 \downtinya{(1.44$\times$)} & 53.1 \downtinya{(↓3.8)} \\
+
+    \hline
+    
+    FastV \downtiny{[ECCV'24]}  & 172.4 \downtinya{(↓72.1\%)} & 599.3 \downtinya{(↓40.6\%)} & 18:19 \downtinya{(↓29.7\%)} & 24.6 \uptiny{(↑39.0\%)} & 0.91 \downtinya{(1.42$\times$)} & 51.6 \downtinya{(↓5.3)} \\
+    
+    PDrop \downtiny{[CVPR'25]}  & 165.3 \downtinya{(↓73.3\%)} & 552.6 \downtinya{(↓45.2\%)} & 18:32 \downtinya{(↓28.9\%)} & 24.5 \uptiny{(↑38.4\%)} & 0.90 \downtinya{(1.41$\times$)} & 53.2 \downtinya{(↓3.7)} \\
+
+    SparseVLM \downtiny{[ICML'25]}  & 370.4 \downtinya{(↓40.1\%)} & 764.8 \downtinya{(↓24.2\%)} & 24:09 \downtinya{(↓7.3\%)} & 27.1 \uptiny{(↑53.1\%)} & 0.69 \downtinya{(1.08$\times$)} & 52.9 \downtinya{(↓4.0)} \\
+    
+    \rowcolor[rgb]{ .949,  .949,  .949} \textbf{VidCom$^2$}  & \textbf{129.2 \downtinya{(↓79.1\%)}} & \textbf{533.0 \downtinya{(↓47.1\%)}} & \textbf{18:11 \downtinya{(↓30.2\%)}} & \textbf{15.8 \downtinya{(↓10.7\%)}} & \textbf{0.92 \downtinya{(1.44$\times$)}} & \textbf{54.3 \downtinya{(↓2.6)}} \\
+    
+    \end{tabular}%
+    }
+    \vspace{-2mm}
+  \caption{\textbf{Efficiency comparisons on LLaVA-OV-7B.} ``LLM Generation Latency'': time for LLM-only response generation; ``Model Generation Latency'': time for model to generate response; ``Total Latency'': total time to complete MVBench; and  ``Throughput'': number of MVBench samples processed per second.}
+  \label{tab:efficiency_comparisons}%
+  \vspace{-5mm}
+\end{table*}%
+

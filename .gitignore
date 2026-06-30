@@ -1,0 +1,45 @@
+# --- large data & checkpoints (keep locally, not in git) ---
+PruneVid/MODELS/
+PruneVid/DATAS/
+**/logs/
+**/test_results/
+**/.cache/
+**/__pycache__/
+**/*.pyc
+**/*.pyo
+**/*.pth
+**/*.bin
+**/*.safetensors
+**/*.ckpt
+**/*.pt
+**/*.tar.gz
+**/*.zip
+**/*.7z
+
+# nested git metadata (preserved locally as backups)
+**/.git_nest_backup/
+
+# env / secrets
+.env
+.env.*
+*.pem
+credentials.json
+
+# OS / editor
+.DS_Store
+*.swp
+*.swo
+.idea/
+.vscode/
+
+# LaTeX build artifacts (keep .tex/.pdf at root)
+*.aux
+*.log
+*.out
+*.toc
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+
+# diagnostic scratch
+PruneVid/diag_*.py

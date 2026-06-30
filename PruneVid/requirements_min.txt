@@ -1,0 +1,23 @@
+# Minimal deps for PruneVid PLLaVA eval (torch installed separately)
+transformers==4.37.1
+peft==0.10.0
+accelerate==0.26.1
+decord==0.6.0
+safetensors
+einops
+tqdm
+pillow
+openai
+requests
+pandas
+pyarrow
+av
+sentencepiece
+protobuf
+tiktoken
+ftfy
+regex
+huggingface-hub==0.21.4
+scipy
+scikit-learn
+opencv-python-headless

@@ -1,0 +1,116 @@
+\section{Experiments}
+\label{sec:Experiments}
+
+\input{latex/tables/comparison_results}
+
+
+\subsection{Experimental Setting}
+\label{subsec:Setting}
+
+
+\noindent \textbf{Benchmark.} We conduct comprehensive comparative experiments across multiple benchmarks, including: MVBench~\cite{li2024mvbench}, LongVideoBench~\cite{wu2024longvideobench}, MLVU~\cite{zhou2024mlvu}, VideoMME~\cite{fu2024videomme}, EgoSchema~\cite{mangalam2023egoschema}, and PerceptionTest~\cite{patraucean2023perception}, employing LMMs-Eval~\cite{zhang2024lmms} evaluation framework. More details are in Appendix~\ref{sec:appendix/benchmarks}.
+
+
+\noindent \textbf{Implementations.} We evaluate our method on popular VideoLLMs: LLaVA-OneVision (LLaVA-OV)~\cite{li2024llava-ov}, LLaVA-Video~\cite{zhang2024llava-video}, and Qwen2-VL~\cite{Wang:Qwen2-VL}. Detailed model information is in Appendix~\ref{sec:appendix/models}. All experiments use NVIDIA A100-SXM4-80GB GPUs.
+
+
+\noindent \textbf{Baselines.} We evaluate our method against various training-free token compression strategies, including: FastV~\cite{Chen:FastV}, PDrop~\cite{xing2024pdrop}, SparseVLM~\cite{Zhang:SparseVLM}, and DyCoke~\cite{tao2024dycoke}, more introduction can be seen in Appendix~\ref{sec:appendix/baselines}. Following SparseVLM, we use the ``equivalent retention ratio''\footnote{``Equivalent retention ratio'' represents the average percentage of visual tokens retained across all LLM layers.} for fair comparisons. Unlike others, DyCoke compresses both visual tokens and KV cache. For fair comparison, we evaluate only on its token compression strategy.
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=\linewidth]{latex/figures/comparison_qwen2_vl.pdf}
+    \vspace{-7mm}
+    \caption{\textbf{Performance with Qwen2-VL.} At $R=25\%$, VidCom$^2$ surpasses DyCoke and SparseVLM by \textbf{7.6\%} and \textbf{4.6\%} of original performance in long video tasks.} 
+    \vspace{-5mm}
+    \label{fig:qwen_2_vl}
+\end{figure}
+
+\subsection{Main Comparisons}
+\label{subsec:Comparison}
+
+% \noindent \textbf{Performance Comparisons.}
+\paragraph{Performance Comparisons.} 
+
+Table~\ref{tab:main_results} presents a comparative analysis of our VidCom$^2$ against multiple token compression methods across various benchmarks. The experimental results reveal \textbf{\emph{two key performance advantages}} of VidCom$^2$:
+
+
+\input{latex/tables/more_comparisions}
+
+\input{latex/tables/efficiency_comparisons}
+
+\noindent \textbf{(i) State-of-the-art Performance:} VidCom$^2$ demonstrates exceptional performance across diverse video understanding benchmarks. On LLaVA-OV and LLaVA-Video with compression ratio $R=25\%$, VidCom$^2$ substantially outperforms DyCoke by margins of \textbf{12.6\%} and \textbf{7.3\%}, respectively. Remarkably, VidCom$^2$ at $R=25\%$ (achieving 99.6\% performance retention) even surpasses DyCoke operating at a higher compression ratio of $R=30\%$ (96.5\% performance retention). This superiority extends to long-form video understanding tasks with Qwen2-VL (Figure~\ref{fig:qwen_2_vl}), where VidCom$^2$ achieves \textbf{101.2\%} performance on VideoMME (Long), surpassing both DyCoke (93.6\%) and SparseVLM (96.6\%) by substantial margins of \textbf{7.6\%} and \textbf{4.6\%}, respectively. Additional comparisons in Table~\ref{tab:more_comparisons} further validate the superior performance advantages of VidCom$^2$ across various video understanding scenarios.
+
+\noindent \textbf{(ii) Robustness in Extreme Compression:} Under aggressive compression with $R=15\%$, most baselines such as FastV and PDrop exhibit significant performance degradation. Even the VideoLLM-specific method DyCoke \textbf{fails to achieve} such aggressive compression due to inherent design limitations.
+However, VidCom$^2$ maintains robust performance, outperforming the second-best method SparseVLM by an average of \textbf{3.9\%} and \textbf{2.1\%} on LLaVA-OV and LLaVA-Video. 
+This demonstrates VidCom$^2$'s superiority in frame-adaptive compression, dynamically adjusting intensity to preserve distinctive visual information.
+
+Besides, we observe an interesting phenomenon that Intra-LLM methods (\textit{e.g.}, SparseVLM), which incorporate textual information, perform relatively better on long video tasks (\textit{e.g.}, LongVideoBench and VideoMME (long)) compared to shorter video benchmarks like MVBench and VideoMME (Short). For instance, SparseVLM slightly outperforms VidCom$^2$ on LongVideoBench with LLaVA-Video at $R=15\%$. This suggests that for longer videos with fixed frame counts, leveraging textual information for visual token compression helps VideoLLMs focus on text-relevant visual areas, potentially leading to improved performance.
+
+
+% \noindent \textbf{Efficiency Comparisons.} 
+\paragraph{Efficiency Comparisons.}
+
+Beyond performance, Table~\ref{tab:efficiency_comparisons} presents comprehensive real-world inference efficiency comparisons among different token compression methods on MVBench, with all experiments conducted on four NVIDIA A100 GPUs. We follow the original implementation of each baseline method, and unless otherwise specified, Flash Attention 2~\cite{daoFlashAttention-2} is used as the efficient attention operator throughout comparisons. The comparison results in Table~\ref{tab:efficiency_comparisons} reveal \textbf{\emph{two key efficiency advantages}} of our VidCom$^2$:
+
+\noindent \textbf{(i) State-of-the-art Efficiency:} VidCom$^2$ achieves remarkable inference efficiency, \textbf{comparable to} simple random token dropping. With 25\% visual tokens retained, the additional computation of VidCom$^2$ is \textbf{negligible} -- only 2.5s extra (\textbf{1.3\%} of LLM generation time) for the entire MVBench inference. Despite this minimal overhead, VidCom$^2$ significantly reduces both the LLM generation latency and overall model latency (primarily from ViT and LLM) by \textbf{70.8\%} and \textbf{43.0\%} respectively, achieving \textbf{1.38$\times$} throughput while maintaining \textbf{99.6\%} average performance across benchmarks. These results highlight the efficiency of VidCom$^2$ in accelerating inference for VideoLLMs.
+
+
+\noindent \textbf{(ii) Efficient Operator Compatibility:} Pre-LLM methods like DyCoke and our VidCom$^2$ maintain Flash Attention compatibility while continuously reducing peak memory usage, showcasing their efficiency. When equipped with Flash Attention, both VidCom$^2$ and random dropping further reduce peak memory usage by approximately 2 GB compared to standard Flash Attention, demonstrating that VidCom$^2$'s computation introduces no additional memory overhead. In contrast, Intra-LLM methods (\textit{e.g.}, PDrop and FastV) even substantially \textbf{increase} memory consumption. For instance, FastV increases the original peak memory by significantly \textbf{39.5\%}. This dramatic increase stems from their reliance on \textbf{explicit} attention weights, rendering them incompatible with Flash Attention in certain layers. Given the large number of frames and tokens in video sequences, such memory-intensive methods show limited practical value for VideoLLMs.
+
+
+
+\input{latex/tables/ablation_2}
+
+\subsection{Ablation Study and Analysis}
+\label{subsec:Ablation}
+
+We conduct multiple ablation studies and analyses with $R = 25\%$ on LLaVA-OV-7B, exploring optimal token evaluation strategies and validating the effectiveness of Frame Compression Adjustment for both VidCom$^2$ and other methods.
+
+% \noindent \textbf{Ablation on Different Token Evaluation.} 
+
+\paragraph{Effects of Different Token Evaluation Metrics.}
+
+Table~\ref{tab:ablation_2} presents various metrics for token evaluation, consisting of three parts: \textbf{(a)} frame-level uniqueness score $u^\mathrm{frame}_{t,m}$, \textbf{(b)} video-level uniqueness score $u^\mathrm{video}_{t,m}$, and \textbf{(c)} the final score $u_{t,m}$ that combines $u^\mathrm{frame}_{t,m}$ and $u^\mathrm{video}_{t,m}$ to guide our token preservation strategy.
+
+For frame-level uniqueness, defining $u^\mathrm{frame}_{t,m}$ as the negative similarity to frame-level global representation ($-s^\mathrm{frame}_{t,m}$) outperforms positive similarity. Similarly, for video-level uniqueness, tokens less similar to the video-level global representation prove more informative. These results indicate that unique tokens, both within frames and across the video, should be prioritized during token compression to preserve richer visual information.
+
+Token compression guided by either frame-level or video-level uniqueness scores outperforms the baselines in Table~\ref{tab:main_results}, showcasing the effectiveness of uniqueness-based selection. Their combination further achieves optimal performance, suggesting that token uniqueness should be evaluated both \textbf{within-frame} and \textbf{across-video} to maximize visual content preservation during token compression.
+
+
+\input{latex/tables/ablation_1_ours}
+
+% \noindent \textbf{Ablation on Frame Compression Adjustment.} 
+\paragraph{Effects of Frame Compression Adjustment.} Table~\ref{tab:ablation_1_ours} compares different compression adjustment strategies: \textbf{(a)} ``Uniform'' with fixed $R=25\%$ (no adjustment); \textbf{(b)} ``$\max\limits_{m} u^\mathrm{video}_{t,m}$'' and \textbf{(c)} ``$\overline{u^\mathrm{video}_{t,m}}$'', which compute frame uniqueness score $u_t$ for token budget allocation using maximum and average operations of $u^\mathrm{video}_{t,m}$ in frame $t$, where larger $u_t$ leads to more tokens preserved in frame $t$.
+
+Generally, Frame Compression Adjustment strategies demonstrate performance improvements over uniform compression, validating the effectiveness of dynamically adjusting compression intensity based on frame uniqueness. This confirms our intuition that allocating more token budget to distinctive frames helps preserve important visual information along the temporal dimension. Moreover, averaging token uniqueness ($\overline{u^\mathrm{video}_{t,m}}$) outperforms maximum operation ($\max\limits_{m} u^\mathrm{video}_{t,m}$), as it better captures the overall \textbf{uniqueness density} of a frame rather than focusing on isolated distinctive features, providing a more comprehensive measure of frame-level temporal uniqueness.
+
+\input{latex/tables/sliding_window}
+
+\paragraph{Effects of Different Window Sizes for Local $g_v$ Computation}
+We explore sliding window strategies for computing local $g_v$ representations to investigate the effectiveness of adjusting frame compression intensity from local perspectives. We evaluate different window sizes (4, 8, 16, 32) on LLaVA-OV-7B with fixed 32 frames.
+
+As shown in Table~\ref{tab:ablation_window_size}, performance consistently improves as window size increases across both MVBench and VideoMME. Notably, when window sizes reach 16 and 32, the performance gap becomes marginal. Window size 16 achieves better results on VideoMME short and medium videos, while window size 32 (global perspective) demonstrates superior performance on VideoMME long videos. Therefore, we adopt the global perspective for adjusting compression intensity by default to achieve better long video understanding.
+
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=\linewidth]{latex/figures/ablation_1_others.pdf}
+    \vspace{-7mm}
+    \caption{\textbf{Effects of Frame Compression Adjustment on other methods.}``+VidCom$^2$'' indicates the application of our Frame Compression Adjustment strategy.} 
+    \vspace{-5mm}
+\label{fig:ablation_1_others}
+\end{figure}
+
+
+
+% \noindent \textbf{Broader Applicability of VidCom$^2$.} 
+\paragraph{Broad Applicability of Frame Compression Adjustment.}
+
+Figure~\ref{fig:ablation_1_others} further demonstrates the effectiveness of integrating our Frame Compression Adjustment strategy with other methods. 
+
+Results show consistent performance improvements compared to their original performance on LLaVA-OV-7B across short (MVBench) and long (MVLU and VideoMME-L) video understanding tasks. Notably, SparseVLM and FastV show significant gains on MVBench, where spatiotemporal changes are more pronounced. This improvement stems from the complementary nature of our approach: while Intra-LLM methods focus on \textbf{textual relevance}, our strategy considers \textbf{visual uniqueness}. This combination enables more comprehensive token preservation, capturing both distinctive visual content and instruction-relevant information, thus mitigating unique visual information loss that often occurs in text-centric approaches during token compression in LLM.
+
+
+
+
+

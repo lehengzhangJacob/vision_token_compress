@@ -1,0 +1,198 @@
+\begin{thebibliography}{38}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Achiam et~al.(2023)Achiam, Adler, Agarwal, Ahmad, Akkaya, Aleman, Almeida, Altenschmidt, Altman, Anadkat, et~al.]{gpt4}
+Josh Achiam, Steven Adler, Sandhini Agarwal, Lama Ahmad, Ilge Akkaya, Florencia~Leoni Aleman, Diogo Almeida, Janko Altenschmidt, Sam Altman, Shyamal Anadkat, et~al.
+\newblock Gpt-4 technical report.
+\newblock \emph{Arxiv e-prints}, 2023.
+
+\bibitem[Bolya et~al.(2023)Bolya, Fu, Dai, Zhang, Feichtenhofer, and Hoffman]{tokenmerge}
+Daniel Bolya, Cheng-Yang Fu, Xiaoliang Dai, Peizhao Zhang, Christoph Feichtenhofer, and Judy Hoffman.
+\newblock Token merging: Your vit but faster.
+\newblock \emph{ICLR}, 2023.
+
+\bibitem[Chen et~al.(2025)Chen, Zhao, Liu, Bai, Lin, Zhou, and Chang]{fastv}
+Liang Chen, Haozhe Zhao, Tianyu Liu, Shuai Bai, Junyang Lin, Chang Zhou, and Baobao Chang.
+\newblock An image is worth 1/2 tokens after layer 2: Plug-and-play inference acceleration for large vision-language models.
+\newblock In \emph{eccv}, 2025.
+
+\bibitem[Du et~al.(2016)Du, Ding, and Jia]{DPC-KNN}
+Mingjing Du, Shifei Ding, and Hongjie Jia.
+\newblock Study on density peaks clustering based on k-nearest neighbors and principal component analysis.
+\newblock \emph{Knowledge-Based Systems}, 2016.
+
+\bibitem[Feichtenhofer et~al.(2019)Feichtenhofer, Fan, Malik, and He]{slowfast}
+Christoph Feichtenhofer, Haoqi Fan, Jitendra Malik, and Kaiming He.
+\newblock Slowfast networks for video recognition.
+\newblock In \emph{ICCV}, 2019.
+
+\bibitem[Fu et~al.(2024)Fu, Dai, Luo, Li, Ren, Zhang, Wang, Zhou, Shen, Zhang, et~al.]{videomme}
+Chaoyou Fu, Yuhan Dai, Yongdong Luo, Lei Li, Shuhuai Ren, Renrui Zhang, Zihan Wang, Chenyu Zhou, Yunhang Shen, Mengdan Zhang, et~al.
+\newblock Video-mme: The first-ever comprehensive evaluation benchmark of multi-modal llms in video analysis.
+\newblock \emph{Arxiv e-prints}, 2024.
+
+\bibitem[Huang et~al.(2024)Huang, Liu, Guo, and Gong]{visualhallucination}
+Wen Huang, Hongbin Liu, Minxin Guo, and Neil~Zhenqiang Gong.
+\newblock Visual hallucinations of multi-modal large language models.
+\newblock \emph{Arxiv e-prints}, 2024.
+
+\bibitem[Jin et~al.(2024)Jin, Takanobu, Zhang, Cao, and Yuan]{chatunivi}
+Peng Jin, Ryuichi Takanobu, Wancai Zhang, Xiaochun Cao, and Li~Yuan.
+\newblock Chat-univi: Unified visual representation empowers large language models with image and video understanding.
+\newblock In \emph{CVPR}, 2024.
+
+\bibitem[Kim et~al.(2024)Kim, Choi, Lee, and Rhee]{igvlm}
+Wonkyun Kim, Changin Choi, Wonseok Lee, and Wonjong Rhee.
+\newblock An image grid can be worth a video: Zero-shot video question answering using a vlm.
+\newblock \emph{Arxiv e-prints}, 2024.
+
+\bibitem[Kong et~al.(2022)Kong, Dong, Ma, Meng, Niu, Sun, Shen, Yuan, Ren, Tang, et~al.]{spvit}
+Zhenglun Kong, Peiyan Dong, Xiaolong Ma, Xin Meng, Wei Niu, Mengshu Sun, Xuan Shen, Geng Yuan, Bin Ren, Hao Tang, et~al.
+\newblock Spvit: Enabling faster vision transformers via latency-aware soft token pruning.
+\newblock In \emph{ECCV}, 2022.
+
+\bibitem[Li et~al.(2024{\natexlab{a}})Li, Zhang, Guo, Zhang, Li, Zhang, Zhang, Zhang, Li, Liu, et~al.]{llava-onevision}
+Bo~Li, Yuanhan Zhang, Dong Guo, Renrui Zhang, Feng Li, Hao Zhang, Kaichen Zhang, Peiyuan Zhang, Yanwei Li, Ziwei Liu, et~al.
+\newblock Llava-onevision: Easy visual task transfer.
+\newblock \emph{arXiv preprint arXiv:2408.03326}, 2024{\natexlab{a}}.
+
+\bibitem[Li et~al.(2023{\natexlab{a}})Li, He, Wang, Li, Wang, Luo, Wang, Wang, and Qiao]{videochat}
+KunChang Li, Yinan He, Yi~Wang, Yizhuo Li, Wenhai Wang, Ping Luo, Yali Wang, Limin Wang, and Yu~Qiao.
+\newblock Videochat: Chat-centric video understanding.
+\newblock \emph{Arxiv e-prints}, 2023{\natexlab{a}}.
+
+\bibitem[Li et~al.(2023{\natexlab{b}})Li, Wang, Li, Wang, He, Wang, and Qiao]{umt}
+Kunchang Li, Yali Wang, Yizhuo Li, Yi~Wang, Yinan He, Limin Wang, and Yu~Qiao.
+\newblock Unmasked teacher: Towards training-efficient video foundation models.
+\newblock 2023{\natexlab{b}}.
+
+\bibitem[Li et~al.(2024{\natexlab{b}})Li, Wang, He, Li, Wang, Liu, Wang, Xu, Chen, Luo, et~al.]{videochat2}
+Kunchang Li, Yali Wang, Yinan He, Yizhuo Li, Yi~Wang, Yi~Liu, Zun Wang, Jilan Xu, Guo Chen, Ping Luo, et~al.
+\newblock Mvbench: A comprehensive multi-modal video understanding benchmark.
+\newblock In \emph{CVPR}, 2024{\natexlab{b}}.
+
+\bibitem[Li et~al.(2023{\natexlab{c}})Li, Wang, and Jia]{llama-vid}
+Yanwei Li, Chengyao Wang, and Jiaya Jia.
+\newblock Llama-vid: An image is worth 2 tokens in large language models.
+\newblock In \emph{CVPR}, 2023{\natexlab{c}}.
+
+\bibitem[Lin et~al.(2023)Lin, Zhu, Ye, Ning, Jin, and Yuan]{videollava}
+Bin Lin, Bin Zhu, Yang Ye, Munan Ning, Peng Jin, and Li~Yuan.
+\newblock Video-llava: Learning united visual representation by alignment before projection.
+\newblock \emph{Arxiv e-prints}, 2023.
+
+\bibitem[Lin et~al.(2024)Lin, Yin, Ping, Molchanov, Shoeybi, and Han]{vila}
+Ji~Lin, Hongxu Yin, Wei Ping, Pavlo Molchanov, Mohammad Shoeybi, and Song Han.
+\newblock Vila: On pre-training for visual language models.
+\newblock In \emph{CVPR}, 2024.
+
+\bibitem[Liu et~al.(2024{\natexlab{a}})Liu, Li, Wu, and Lee]{llava}
+Haotian Liu, Chunyuan Li, Qingyang Wu, and Yong~Jae Lee.
+\newblock Visual instruction tuning.
+\newblock \emph{nips}, 2024{\natexlab{a}}.
+
+\bibitem[Liu et~al.(2024{\natexlab{b}})Liu, Li, Tang, Ge, Shan, and Li]{stllm}
+Ruyang Liu, Chen Li, Haoran Tang, Yixiao Ge, Ying Shan, and Ge~Li.
+\newblock St-llm: Large language models are effective temporal learners.
+\newblock \emph{Arxiv e-prints}, 2024{\natexlab{b}}.
+
+\bibitem[Liu et~al.(2024{\natexlab{c}})Liu, Desai, Liao, Wang, Xie, Xu, Kyrillidis, and Shrivastava]{scissorhands}
+Zichang Liu, Aditya Desai, Fangshuo Liao, Weitao Wang, Victor Xie, Zhaozhuo Xu, Anastasios Kyrillidis, and Anshumali Shrivastava.
+\newblock Scissorhands: Exploiting the persistence of importance hypothesis for llm kv cache compression at test time.
+\newblock \emph{NeurIPS}, 2024{\natexlab{c}}.
+
+\bibitem[Liu et~al.(2024{\natexlab{d}})Liu, Liu, Wang, Dong, Chen, Rao, Krishna, and Lu]{elasticcache}
+Zuyan Liu, Benlin Liu, Jiahui Wang, Yuhao Dong, Guangyi Chen, Yongming Rao, Ranjay Krishna, and Jiwen Lu.
+\newblock Efficient inference of vision instruction-following models with elastic cache.
+\newblock \emph{Arxiv e-prints}, 2024{\natexlab{d}}.
+
+\bibitem[Maaz et~al.(2023)Maaz, Rasheed, Khan, and Khan]{videochatgpt}
+Muhammad Maaz, Hanoona Rasheed, Salman Khan, and Fahad~Shahbaz Khan.
+\newblock Video-chatgpt: Towards detailed video understanding via large vision and language models.
+\newblock \emph{Arxiv e-prints}, 2023.
+
+\bibitem[Mangalam et~al.(2023)Mangalam, Akshulakov, and Malik]{egoschema}
+Karttikeya Mangalam, Raiymbek Akshulakov, and Jitendra Malik.
+\newblock Egoschema: A diagnostic benchmark for very long-form video language understanding.
+\newblock \emph{NeurIPS}, 2023.
+
+\bibitem[Radford et~al.(2021)Radford, Kim, Hallacy, Ramesh, Goh, Agarwal, Sastry, Askell, Mishkin, Clark, et~al.]{clip}
+Alec Radford, Jong~Wook Kim, Chris Hallacy, Aditya Ramesh, Gabriel Goh, Sandhini Agarwal, Girish Sastry, Amanda Askell, Pamela Mishkin, Jack Clark, et~al.
+\newblock Learning transferable visual models from natural language supervision.
+\newblock In \emph{ICML}, 2021.
+
+\bibitem[Rao et~al.(2021)Rao, Zhao, Liu, Lu, Zhou, and Hsieh]{rao2021dynamicvit}
+Yongming Rao, Wenliang Zhao, Benlin Liu, Jiwen Lu, Jie Zhou, and Cho-Jui Hsieh.
+\newblock Dynamicvit: Efficient vision transformers with dynamic token sparsification.
+\newblock \emph{NeurIPS}, 2021.
+
+\bibitem[Shang et~al.(2024)Shang, Cai, Xu, Lee, and Yan]{llavaprumerge}
+Yuzhang Shang, Mu~Cai, Bingxin Xu, Yong~Jae Lee, and Yan Yan.
+\newblock Llava-prumerge: Adaptive token reduction for efficient large multimodal models.
+\newblock \emph{Arxiv e-prints}, 2024.
+
+\bibitem[Touvron et~al.(2023)Touvron, Lavril, Izacard, Martinet, Lachaux, Lacroix, Rozi{\`e}re, Goyal, Hambro, Azhar, et~al.]{llama}
+Hugo Touvron, Thibaut Lavril, Gautier Izacard, Xavier Martinet, Marie-Anne Lachaux, Timoth{\'e}e Lacroix, Baptiste Rozi{\`e}re, Naman Goyal, Eric Hambro, Faisal Azhar, et~al.
+\newblock Llama: Open and efficient foundation language models.
+\newblock \emph{Arxiv e-prints}, 2023.
+
+\bibitem[Vasu et~al.(2023)Vasu, Gabriel, Zhu, Tuzel, and Ranjan]{vasu2023fastvit}
+Pavan Kumar~Anasosalu Vasu, James Gabriel, Jeff Zhu, Oncel Tuzel, and Anurag Ranjan.
+\newblock Fastvit: A fast hybrid vision transformer using structural reparameterization.
+\newblock In \emph{ICCV}, 2023.
+
+\bibitem[Wan et~al.(2024)Wan, Wu, Liu, Huang, Zhu, Jin, Wang, and Yuan]{look-m}
+Zhongwei Wan, Ziang Wu, Che Liu, Jinfa Huang, Zhihong Zhu, Peng Jin, Longyue Wang, and Li~Yuan.
+\newblock Look-m: Look-once optimization in kv cache for efficient multimodal long-context inference.
+\newblock \emph{Arxiv e-prints}, 2024.
+
+\bibitem[Wang et~al.(2024{\natexlab{a}})Wang, Yuan, and Zhang]{tarsier}
+Jiawei Wang, Liping Yuan, and Yuchen Zhang.
+\newblock Tarsier: Recipes for training and evaluating large video description models.
+\newblock \emph{Arxiv e-prints}, 2024{\natexlab{a}}.
+
+\bibitem[Wang et~al.(2021)Wang, Xing, and Liu]{wang2021actionclip}
+Mengmeng Wang, Jiazheng Xing, and Yong Liu.
+\newblock Actionclip: A new paradigm for video action recognition.
+\newblock \emph{Arxiv e-prints}, 2021.
+
+\bibitem[Wang et~al.(2024{\natexlab{b}})Wang, Li, Li, Yu, He, Chen, Pei, Zheng, Xu, Wang, et~al.]{wang2024internvideo2}
+Yi~Wang, Kunchang Li, Xinhao Li, Jiashuo Yu, Yinan He, Guo Chen, Baoqi Pei, Rongkun Zheng, Jilan Xu, Zun Wang, et~al.
+\newblock Internvideo2: Scaling video foundation models for multimodal video understanding.
+\newblock \emph{Arxiv e-prints}, 2024{\natexlab{b}}.
+
+\bibitem[Wu(2024)]{wu2024freeva}
+Wenhao Wu.
+\newblock Freeva: Offline mllm as training-free video assistant.
+\newblock \emph{Arxiv e-prints}, 2024.
+
+\bibitem[Xu et~al.(2024{\natexlab{a}})Xu, Zhao, Zhou, Lin, Ng, and Feng]{pllava}
+Lin Xu, Yilin Zhao, Daquan Zhou, Zhijie Lin, See~Kiong Ng, and Jiashi Feng.
+\newblock Pllava: Parameter-free llava extension from images to videos for video dense captioning.
+\newblock \emph{Arxiv e-prints}, 2024{\natexlab{a}}.
+
+\bibitem[Xu et~al.(2024{\natexlab{b}})Xu, Gao, Gan, Chen, Lai, Gang, Kang, and Dehghan]{sfllava}
+Mingze Xu, Mingfei Gao, Zhe Gan, Hong-You Chen, Zhengfeng Lai, Haiming Gang, Kai Kang, and Afshin Dehghan.
+\newblock Slowfast-llava: A strong training-free baseline for video large language models.
+\newblock \emph{Arxiv e-prints}, 2024{\natexlab{b}}.
+
+\bibitem[Yang et~al.(2024)Yang, Yang, Hui, Zheng, Yu, Zhou, Li, Li, Liu, Huang, et~al.]{qwen}
+An~Yang, Baosong Yang, Binyuan Hui, Bo~Zheng, Bowen Yu, Chang Zhou, Chengpeng Li, Chengyuan Li, Dayiheng Liu, Fei Huang, et~al.
+\newblock Qwen2 technical report.
+\newblock \emph{Arxiv e-prints}, 2024.
+
+\bibitem[Zhang et~al.(2023)Zhang, Li, and Bing]{videollama}
+Hang Zhang, Xin Li, and Lidong Bing.
+\newblock Video-llama: An instruction-tuned audio-visual language model for video understanding.
+\newblock \emph{Arxiv e-prints}, 2023.
+
+\bibitem[Zhang et~al.(2024)Zhang, Sheng, Zhou, Chen, Zheng, Cai, Song, Tian, R{\'e}, Barrett, et~al.]{h2o}
+Zhenyu Zhang, Ying Sheng, Tianyi Zhou, Tianlong Chen, Lianmin Zheng, Ruisi Cai, Zhao Song, Yuandong Tian, Christopher R{\'e}, Clark Barrett, et~al.
+\newblock H2o: Heavy-hitter oracle for efficient generative inference of large language models.
+\newblock \emph{NeurIPS}, 2024.
+
+\end{thebibliography}
