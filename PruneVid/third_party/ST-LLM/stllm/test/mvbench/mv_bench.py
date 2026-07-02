@@ -121,6 +121,13 @@ class MVBench_dataset(Dataset):
         start_idx = max(first_idx, round(start * fps))
         end_idx = min(round(end * fps), max_frame)
 
+        # Our DATAS stores pre-segmented Charades/STA clips, so the annotation
+        # bound (in original full-video seconds) can fall outside this clip and
+        # produce an empty/invalid range. Fall back to the whole available clip.
+        if start_idx > end_idx:
+            start_idx, end_idx = first_idx, max_frame
+            bound = None
+
         if bound:
             video_len = bound[1] - bound[0]
         else:
@@ -151,6 +158,7 @@ class MVBench_dataset(Dataset):
         images_group = list()
         frame_indices = self.get_index(bound, fps, max_frame, first_idx=0) 
         for frame_index in frame_indices:
+            frame_index = int(min(max(frame_index, 0), max_frame))
             img = Image.fromarray(vr[frame_index].numpy())
             images_group.append(img)
         torch_imgs = self.transform(images_group)

@@ -12,7 +12,7 @@ export PRUNEVID_CLUSTER_RATIO="${PRUNEVID_CLUSTER_RATIO:-0.5}"
 CKPT_PATH="${STLLM_QA_CKPT:-/home/msj_team/Jacob/nk/PruneVid/MODELS/st-llm/instructblipbase_stllm_qa}"
 ANNO_PATH="${MVBENCH_JSON:-/home/msj_team/Jacob/nk/PruneVid/DATAS/MVBench/json}"
 OUT_DIR="${OUT_DIR:-/home/msj_team/Jacob/nk/PruneVid/test_results/stllm-prunevid-mvbench}"
-PYTHON_BIN="${PYTHON_BIN:-/home/msj_team/.conda/envs/PruneVid/bin/python}"
+PYTHON_BIN="${PYTHON_BIN:-/home/msj_team/.conda/envs/stllm/bin/python}"
 
 "${PYTHON_BIN}" stllm/test/mvbench/mv_bench_infer.py \
     --cfg-path config/instructblipbase_stllm_qa.yaml \

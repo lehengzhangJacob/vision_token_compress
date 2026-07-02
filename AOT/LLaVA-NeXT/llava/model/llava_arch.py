@@ -1215,9 +1215,9 @@ class LlavaMetaForCausalLM(ABC):
                             ###############################
                             
                             # # ov 14*14 + 1
-                            # rank0_print("keep tokens : ", image_feature.shape[0], 
-                            #       "compression ratio : {:.4f}".format(1.0 - (image_feature.shape[0] - 1) / (input_frmaes * 196)),
-                            #       "Retenion ratio : {:.4f}".format((image_feature.shape[0] - 1) / (input_frmaes * 196)))
+                            rank0_print("[AOT-RETAINED] keep tokens : ", image_feature.shape[0],
+                                  "compression ratio : {:.4f}".format(1.0 - (image_feature.shape[0] - 1) / (input_frmaes * 196)),
+                                  "Retenion ratio : {:.4f}".format((image_feature.shape[0] - 1) / (input_frmaes * 196)))
                             
                         elif mm_newline_position == "no_token":
                             new_image_features.append(image_feature.flatten(0, 1))

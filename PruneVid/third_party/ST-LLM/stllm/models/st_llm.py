@@ -34,7 +34,7 @@ if PRUNEVID_ROOT not in sys.path:
     sys.path.append(PRUNEVID_ROOT)
 try:
     from prunevid_core import PruneVidVisionMerger
-except Exception:
+except ImportError:
     PruneVidVisionMerger = None
 
 class StllmConfig(LlamaConfig):

@@ -1,8 +1,6 @@
-dataset_path: lmms-lab/Video-MME
+dataset_path: /home/msj_team/.cache/huggingface/videomme_meta
 dataset_kwargs:
-  token: True
-  cache_dir: videomme
-  video: True
+  cache_dir: /home/msj_team/.cache/huggingface/videomme
   # From_YouTube: True
 task: videomme
 test_split: test

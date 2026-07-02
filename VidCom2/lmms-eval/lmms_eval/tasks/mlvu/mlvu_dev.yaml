@@ -1,8 +1,6 @@
-dataset_path: sy1998/MLVU_dev
+dataset_path: /home/msj_team/.cache/huggingface/mlvu_meta
 dataset_kwargs:
-  token: True
-  cache_dir: mlvu
-  video: True
+  cache_dir: /home/msj_team/.cache/huggingface/mlvu
 generation_kwargs:
   max_new_tokens: 16
   temperature: 0

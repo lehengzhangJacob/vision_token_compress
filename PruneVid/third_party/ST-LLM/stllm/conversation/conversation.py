@@ -1,8 +1,6 @@
 import argparse
 import time
 import numpy as np
-import os
-import sys
 from PIL import Image
 
 import torch
@@ -21,14 +19,6 @@ from stllm.test.video_transforms import (
     Stack, ToTorchFormatTensor
 )
 from torchvision.transforms.functional import InterpolationMode
-
-PRUNEVID_ROOT = "/home/msj_team/Jacob/nk/PruneVid"
-if PRUNEVID_ROOT not in sys.path:
-    sys.path.append(PRUNEVID_ROOT)
-try:
-    from prunevid_core import PruneVidVisionMerger
-except Exception:
-    PruneVidVisionMerger = None
 
 
 class SeparatorStyle(Enum):
@@ -291,31 +281,7 @@ class Chat:
         if self.model.video_input == 'mean':
             video_emb = video_emb.mean(dim=0, keepdim=True)
         elif self.model.video_input == 'all':
-            if os.getenv("PRUNEVID", "False") == "True":
-                if PruneVidVisionMerger is None:
-                    raise ImportError("PRUNEVID=True requires /home/msj_team/Jacob/nk/PruneVid/prunevid_core")
-                frame_count, tokens_per_frame, hidden_size = video_emb.shape
-                merger = PruneVidVisionMerger(
-                    num_frames=frame_count,
-                    tokens_per_frame=tokens_per_frame,
-                    tau=float(os.getenv("PRUNEVID_TAU", 0.8)),
-                    temporal_segment_ratio=float(os.getenv("PRUNEVID_TEMPORAL_SEGMENT_RATIO", 0.25)),
-                    cluster_ratio=float(os.getenv("PRUNEVID_CLUSTER_RATIO", 0.5)),
-                    knn_k=int(os.getenv("PRUNEVID_KNN_K", 7)),
-                )
-                video_emb, static_sizes, dynamic_sizes, window_sizes = merger.merge_frames_dynamic(
-                    video_emb.reshape(1, frame_count * tokens_per_frame, hidden_size)
-                )
-                self.model.prunevid_last_metadata = {
-                    "static_sizes": static_sizes,
-                    "dynamic_sizes": dynamic_sizes,
-                    "window_sizes": window_sizes,
-                    "tokens_per_frame": tokens_per_frame,
-                    "original_tokens": frame_count * tokens_per_frame,
-                    "merged_tokens": video_emb.shape[1],
-                }
-            else:
-                video_emb = video_emb.view(1, -1, video_emb.size(-1))
+            video_emb = video_emb.view(1, -1, video_emb.size(-1))
         elif self.model.video_input == 'residual':
             T = video_emb.size(0)
             residual_size = self.model.residual_size

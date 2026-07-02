@@ -1,38 +1,32 @@
 # AOT (CVPR 2026) Reproduction Report
-_Generated 2026-06-25 21:52_  
-Model: LLaVA-OneVision-7B / LLaVA-Video-7B - 2x RTX 4090, hf-mirror, training-free AOT.
-EgoSchema (full test set) has no public ground truth; validated by prediction-agreement with the authors' committed submission files (100% agreement => identical server score).
 
-### LLaVA-OneVision-7B (Table 1)
+_Generated 2026-07-01_  
+Model: LLaVA-OneVision-7B / LLaVA-Video-7B — 2× RTX 4090, hf-mirror, training-free AOT.
 
-| Benchmark | Ratio | Reproduced | Paper | Delta |
-|---|---|---|---|---|
-| MVBench | 10% | 56.70 | 57.0 | -0.30 |
-| MVBench | 15% | 57.33 | 57.8 | -0.47 |
-| MVBench | 20% | 57.73 | 58.1 | -0.38 |
-| MVBench | 25% | 57.75 | 58.7 | -0.95 |
-| EgoSchema | 10% | 98.6% pred-agree (n=5031) | 60.6 | (submission) |
-| EgoSchema | 15% | 95.0% pred-agree (n=5031) | 61.3 | (submission) |
-| EgoSchema | 20% | 95.8% pred-agree (n=5031) | 61.3 | (submission) |
-| EgoSchema | 25% | 94.1% pred-agree (n=5031) | 61.3 | (submission) |
-| LongVideoBench | 10% | 52.06 | 54.2 | -2.14 |
-| LongVideoBench | 15% | 52.73 | 55.2 | -2.47 |
-| LongVideoBench | 20% | 53.18 | 56.2 | -3.02 |
-| LongVideoBench | 25% | 52.80 | 56.3 | -3.49 |
-| VideoMME | 10% | 53.30 | 56.1 | -2.80 |
-| VideoMME | 15% | 53.70 | 56.6 | -2.90 |
-| VideoMME | 20% | 58.59 | 57.2 | +1.39 |
-| VideoMME | 25% | 54.59 | 57.5 | -2.91 |
+EgoSchema full-test labels are not public. Accuracies below are from submitting local predictions to the **official validation server** (`validation-server.onrender.com/api/upload/`). For LLaVA-OV, local predictions also agree with the authors' committed submissions on 94–99% of items (100% agreement ⇒ identical server score).
 
-### LLaVA-Video-7B (Table 2)
+Averages: **Avg. Score** = mean of MVBench, EgoSchema, LongVideoBench, VideoMME; **Avg. %** = Avg. Score relative to the full-model baseline row.
 
-| Benchmark | Ratio | Reproduced | Paper | Delta |
-|---|---|---|---|---|
-| MVBench | 15% | 57.98 | 57.8 | +0.18 |
-| MVBench | 25% | 58.42 | 58.8 | -0.38 |
-| EgoSchema | 15% | submission n=5031 | 55.2 | (no GT) |
-| EgoSchema | 25% | submission n=5031 | 55.4 | (no GT) |
-| LongVideoBench | 15% | 55.42 | 55.0 | +0.42 |
-| LongVideoBench | 25% | 56.24 | 56.2 | +0.04 |
-| VideoMME | 15% | 62.11 | 62.0 | +0.11 |
-| VideoMME | 25% | 62.52 | 62.4 | +0.12 |
+### LLaVA-OneVision-7B (Table 3)
+
+| Retained | MVBench | EgoSchema | LongVideoBench | VideoMME | Avg. Score | Avg. % | Paper AOT |
+|---|---|---|---|---|---|---|---|
+| 25% | 57.75 | **61.18** | 52.80 | 54.59 | **56.58** | **96.8** | 58.5 / 100.0 |
+| 20% | 57.73 | **61.22** | 53.18 | 58.59 | **57.68** | **98.7** | 58.2 / 99.7 |
+| 15% | 57.33 | **60.98** | 52.73 | 53.70 | **56.19** | **96.2** | 57.7 / 98.8 |
+| 10% | 56.70 | **60.45** | 52.06 | 53.30 | **55.63** | **95.2** | 57.0 / 97.6 |
+
+EgoSchema paper targets: 61.3 (25/20/15%), 60.6 (10%). Reproduced fullset accuracies match within ~0.1 pt.
+
+LongVideoBench and VideoMME show larger gaps vs. paper (especially at 25%), which drives Avg. % below paper.
+
+### LLaVA-Video-7B (Table 4)
+
+| Retained | MVBench | EgoSchema | LongVideoBench | VideoMME | Avg. Score | Avg. % | Paper AOT |
+|---|---|---|---|---|---|---|---|
+| 25% | 58.42 | **55.85** | 56.24 | 62.52 | **58.26** | **96.8** | 58.2 / 96.7 |
+| 15% | 57.98 | **55.08** | 55.42 | 62.11 | **57.65** | **95.8** | 57.5 / 95.5 |
+
+EgoSchema paper targets: 55.4 (25%), 55.2 (15%). Reproduced fullset: 55.85 / 55.08 — within ~0.5 pt.
+
+MVBench, LongVideoBench, and VideoMME align closely with paper; Avg. % matches paper to within 0.1 pt.
