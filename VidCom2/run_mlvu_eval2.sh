@@ -8,6 +8,7 @@ LOGD=logs/mlvu_eval2; mkdir -p "$LOGD"; OL="$LOGD/orchestrator.log"
 log(){ echo "[$(date '+%F %T')] $*" | tee -a "$OL"; }
 G0=GPU-eed39de3-0f59-48a3-28a4-82d0ca5dbf0b
 G1=GPU-a373a2c2-921b-3802-4d11-7bbec9effcf2
+G3=GPU-fd2e342a-3610-76c0-ef30-d087968b4751
 FIXLOG=/home/msj_team/Jacob/nk/VidCom2/logs/mlvu_fix.log
 
 log "=== phase 1: wait for mlvu_fix.py to finish ==="
@@ -37,10 +38,13 @@ one(){ # gpu model ratio label
     bash run_eval.sh "$2" mlvu_dev "$3" "$4" > "$LOGD/$2_$4.log" 2>&1
   log "DONE $2 $4 rc=$?"
 }
-log "=== phase 2: 4 clean evals (GPU0=ov, GPU1=vid) ==="
+# GPU0 chains the two fast OV jobs (~3h each); the two slow LLaVA-Video jobs
+# (~7-13h each) get their own GPU (G1, G3) so they run concurrently, not serially.
+log "=== phase 2: 4 clean evals (GPU0=ov x2, GPU1=vid R25, GPU3=vid R15) ==="
 ( one "$G0" ov 0.25 mlvu_0p25; one "$G0" ov 0.15 mlvu_0p15 ) & P0=$!
-( one "$G1" vid 0.25 mlvu_0p25; one "$G1" vid 0.15 mlvu_0p15 ) & P1=$!
-wait $P0 $P1
+one "$G1" vid 0.25 mlvu_0p25 & P1=$!
+one "$G3" vid 0.15 mlvu_0p15 & P3=$!
+wait $P0 $P1 $P3
 
 log "=== MLVU results ==="
 /home/msj_team/.conda/envs/VidCom2/bin/python3.10 - <<'PY'
