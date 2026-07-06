@@ -119,14 +119,3 @@ Reproduction of **PruneVid**, **VidCom²**, and **AOT** (training-free video tok
 | `VidCom2/` | VidCom² reproduction |
 | `VidCom2-qwen/` | VidCom² Qwen variant (worktree copy) |
 
-**Not included (too large for GitHub):** `PruneVid/MODELS/` (model checkpoints, ~44 GB), `PruneVid/DATAS/` (benchmark videos & annotations, ~23 GB), `**/logs/`, `**/test_results/`. Restore data locally with the download scripts under `PruneVid/scripts/` and `PruneVid/download_*.sh`.
-
-**Quick start:**
-
-```bash
-source nk_env.sh          # or PruneVid/prunevid_env.sh
-cd PruneVid
-bash run_prunevid_extension_queue.sh
-```
-
-See `reproduction_report.tex` / `reproduction_report.pdf` for the LaTeX version of these tables.
