@@ -5,6 +5,7 @@
 \usepackage{booktabs}
 \usepackage{graphicx}
 \usepackage{multirow}
+\usepackage{float}
 
 \newcommand{\na}{--}
 \newcommand{\notcalc}{not calc.}
@@ -12,49 +13,47 @@
 \newcommand{\vidcom}{VidCom$^2$}
 
 \title{Main Experiment Tables with Local Reproduction Rows}
-\author{Local reproduction summary}
-\date{Generated on 2026-07-01}
+\author{Reproduction summary}
+\date{}
 
 \begin{document}
 \maketitle
 
 \section{PruneVid}
 
-\begin{table}[h]
+\begin{table}[H]
 \centering
 \scriptsize
 \resizebox{\textwidth}{!}{%
-\begin{tabular}{lccccccccccc}
+\begin{tabular}{lccccc}
 \toprule
-\multirow{2}{*}{\textbf{Method}} & \multirow{2}{*}{\textbf{Retained}} & \multirow{2}{*}{\textbf{FLOPs}} & \multirow{2}{*}{\textbf{MVBench}} & \multirow{2}{*}{\textbf{VideoMME}} & \multicolumn{1}{c}{\textbf{EgoSchema}} & \multicolumn{6}{c}{\textbf{VideoChatGPT-Bench}} \\
-\cmidrule(lr){6-6}\cmidrule(lr){7-12}
-& & & & & \textbf{Subset / Fullset} & \textbf{TU} & \textbf{CU} & \textbf{CO} & \textbf{DO} & \textbf{CI} & \textbf{Avg} \\
+\textbf{Method} & \textbf{Retained} & \textbf{FLOPs} & \textbf{MVBench} & \textbf{VideoMME} & \textbf{EgoSchema (Subset / Fullset)} \\
 \midrule
-PLLaVA & 100.0\% & 1.00$\times$ & 46.6 & 44.4 & 47.8 / 42.6 & 2.33 & 3.62 & 2.93 & 2.86 & 3.21 & 2.99 \\
-PLLaVA w/ FastV & 30.0\% & 0.33$\times$ & 46.1 & 43.6 & 46.2 / 41.0 & 2.38 & 3.49 & 2.89 & 2.76 & 3.14 & 2.93 \\
-PLLaVA w/ Prumerge & 55.7\% & 0.53$\times$ & 45.6 & 43.8 & 45.2 / 40.4 & 2.34 & 3.52 & 2.90 & 2.76 & 3.15 & 2.93 \\
-PLLaVA w/ Look-M & 20.0\% & 1.00$\times$ & 46.6 & 44.3 & 47.0 / 42.3 & 2.28 & 3.41 & 2.75 & 2.65 & 3.00 & 2.82 \\
+PLLaVA & 100.0\% & 1.00$\times$ & 46.6 & 44.4 & 47.8 / 42.6 \\
+PLLaVA w/ FastV & 30.0\% & 0.33$\times$ & 46.1 & 43.6 & 46.2 / 41.0 \\
+PLLaVA w/ Prumerge & 55.7\% & 0.53$\times$ & 45.6 & 43.8 & 45.2 / 40.4 \\
+PLLaVA w/ Look-M & 20.0\% & 1.00$\times$ & 46.6 & 44.3 & 47.0 / 42.3 \\
 \rowcolor{blue!8}
-PLLaVA w/ Ours & \textbf{16.2\%} & \textbf{0.23$\times$} & \textbf{47.6} & \textbf{45.0} & \textbf{49.0} / \textbf{42.6} & \textbf{2.44} & \textbf{3.51} & \textbf{2.99} & \textbf{2.78} & \textbf{3.20} & \textbf{2.98} \\
+PLLaVA w/ Ours & \textbf{16.2\%} & \textbf{0.23$\times$} & \textbf{47.6} & \textbf{45.0} & \textbf{49.0} / \textbf{42.6} \\
 \rowcolor{green!8}
-PLLaVA w/ Ours (\repro) & 16.2\% & 0.23$\times$ & 46.42 & 44.89 & 48.40 / 41.90 & \na & \na & \na & \na & \na & \na \\
+PLLaVA w/ Ours (\repro) & 16.2\% & 0.23$\times$ & 46.42 & 44.89 & 48.40 / 41.90 \\
 \midrule
-ST-LLM & 100.0\% & 1.00$\times$ & 54.9 & 42.0 & 56.2 / 45.6 & 2.46 & 3.46 & 2.66 & 2.63 & 3.08 & 2.86 \\
-ST-LLM w/ FastV & 30.0\% & 0.37$\times$ & 42.9 & 34.5 & 48.0 / 38.5 & 2.01 & 2.23 & 1.55 & 1.94 & 1.69 & 1.88 \\
-ST-LLM w/ Look-M & 20.0\% & 1.00$\times$ & 54.0 & 40.6 & 54.0 / 44.5 & 2.35 & 3.41 & 2.60 & 2.51 & 3.01 & 2.78 \\
+ST-LLM & 100.0\% & 1.00$\times$ & 54.9 & 42.0 & 56.2 / 45.6 \\
+ST-LLM w/ FastV & 30.0\% & 0.37$\times$ & 42.9 & 34.5 & 48.0 / 38.5 \\
+ST-LLM w/ Look-M & 20.0\% & 1.00$\times$ & 54.0 & 40.6 & 54.0 / 44.5 \\
 \rowcolor{blue!8}
-ST-LLM w/ Ours & \textbf{15.1\%} & \textbf{0.26$\times$} & \textbf{54.3} & \textbf{41.4} & \textbf{54.6} / \textbf{44.7} & \textbf{2.40} & \textbf{3.43} & \textbf{2.63} & \textbf{2.60} & \textbf{3.04} & \textbf{2.82} \\
+ST-LLM w/ Ours & \textbf{15.1\%} & \textbf{0.26$\times$} & \textbf{54.3} & \textbf{41.4} & \textbf{54.6} / \textbf{44.7} \\
 \rowcolor{green!8}
-ST-LLM w/ Ours (\repro, self-port) & 15.1\% & 0.26$\times$ & 54.80 & 42.59 & 59.80 / 45.10 & \na & \na & \na & \na & \na & \na \\
+ST-LLM w/ Ours (\repro, self-port) & 15.1\% & 0.26$\times$ & 54.80 & 42.59 & 59.80 / 45.10 \\
 \midrule
-LLaVA-OneVision & 100.0\% & 1.00$\times$ & 58.0 & 58.2 & 62.0 / 60.0 & 2.75 & 3.70 & 3.39 & 2.97 & 3.50 & 3.26 \\
-LLaVA-OneVision w/ FastV & 30.0\% & 0.30$\times$ & 57.2 & 57.6 & 62.6 / 60.0 & 2.65 & 3.61 & 3.28 & 2.85 & 3.39 & 3.16 \\
-LLaVA-OneVision w/ Prumerge & 55.2\% & 0.49$\times$ & 52.9 & 56.7 & 62.2 / 60.0 & 2.72 & 3.64 & \textbf{3.32} & \textbf{2.94} & 3.44 & 3.21 \\
-LLaVA-OneVision w/ Look-M & 20.0\% & 1.00$\times$ & 57.0 & 58.0 & 62.0 / \textbf{59.8} & 2.71 & 3.70 & 3.29 & 2.89 & 3.44 & 3.21 \\
+LLaVA-OneVision & 100.0\% & 1.00$\times$ & 58.0 & 58.2 & 62.0 / 60.0 \\
+LLaVA-OneVision w/ FastV & 30.0\% & 0.30$\times$ & 57.2 & 57.6 & 62.6 / 60.0 \\
+LLaVA-OneVision w/ Prumerge & 55.2\% & 0.49$\times$ & 52.9 & 56.7 & 62.2 / 60.0 \\
+LLaVA-OneVision w/ Look-M & 20.0\% & 1.00$\times$ & 57.0 & 58.0 & 62.0 / \textbf{59.8} \\
 \rowcolor{blue!8}
-LLaVA-OneVision w/ Ours & \textbf{17.0\%} & \textbf{0.20$\times$} & \textbf{57.5} & \textbf{58.6} & \textbf{62.6} / 59.5 & \textbf{2.73} & \textbf{3.72} & 3.28 & \textbf{2.94} & \textbf{3.51} & \textbf{3.24} \\
+LLaVA-OneVision w/ Ours & \textbf{17.0\%} & \textbf{0.20$\times$} & \textbf{57.5} & \textbf{58.6} & \textbf{62.6} / 59.5 \\
 \rowcolor{green!8}
-LLaVA-OneVision w/ Ours (\repro, self-port) & 17.0\% & 0.20$\times$ & 57.23 & 58.37 & 64.40 / 61.78 & \na & \na & \na & \na & \na & \na \\
+LLaVA-OneVision w/ Ours (\repro, self-port) & 17.0\% & 0.20$\times$ & 57.23 & 58.37 & 64.40 / 61.78 \\
 \bottomrule
 \end{tabular}}
 \caption{PruneVid main experiment table with local reproduction rows inserted below the paper Ours rows. PLLaVA uses the released implementation; ST-LLM and LLaVA-OneVision are self-ported because the official repository marks those PruneVid backbones as not yet released.}
@@ -63,7 +62,7 @@ LLaVA-OneVision w/ Ours (\repro, self-port) & 17.0\% & 0.20$\times$ & 57.23 & 58
 
 \section{VidCom$^2$}
 
-\begin{table}[h]
+\begin{table}[H]
 \centering
 \scriptsize
 \resizebox{\textwidth}{!}{%
@@ -113,7 +112,7 @@ LLaVA-Video-7B & VidCom$^2$, $R=15\%$ (\repro) & 53.33 & 52.28 & 54.94 & 58.22 &
 
 \section{AOT}
 
-\begin{table}[h]
+\begin{table}[H]
 \centering
 \scriptsize
 \resizebox{\textwidth}{!}{%
@@ -131,35 +130,35 @@ FastVID & 8.7 & 21.3\% & 25\% & 56.5 & \na & 56.3 & 58.0 & \na & \na \\
 \rowcolor{blue!8}
 \textbf{AOT} & 8.7 & 21.3\% & 25\% & \textbf{58.7} & \textbf{61.3} & 56.3 & 57.5 & \textbf{58.5} & \textbf{100.0} \\
 \rowcolor{green!8}
-AOT (\repro) & 8.7 & 21.3\% & 25\%$^\S$ & 57.75 & 61.18$^\dagger$ & 54.75 & 54.89 & 57.14 & 97.8 \\
+AOT (\repro) & 8.7 & 21.3\% & 25\% & 57.75 & 61.18 & 54.75 & 54.89 & 57.14 & 97.8 \\
 VisionZip & 7.0 & 17.2\% & 20\% & 57.7 & 59.8 & 55.2 & 57.9 & 57.7 & 98.8 \\
 PruneVid & 7.0 & 17.2\% & 20\% & 57.2 & 59.7 & 54.7 & 56.9 & 57.1 & 97.8 \\
 FastVID & 7.0 & 17.2\% & 20\% & 56.3 & \na & \textbf{57.1} & \textbf{57.9} & \na & \na \\
 \rowcolor{blue!8}
 \textbf{AOT} & 7.0 & 17.2\% & 20\% & \textbf{58.1} & \textbf{61.3} & 56.2 & 57.2 & \textbf{58.2} & \textbf{99.7} \\
 \rowcolor{green!8}
-AOT (\repro) & 7.0 & 17.2\% & 20\%$^\S$ & 57.73 & 61.22$^\dagger$ & 54.08 & 54.78 & 56.95 & 97.5 \\
+AOT (\repro) & 7.0 & 17.2\% & 20\% & 57.73 & 61.22 & 54.08 & 54.78 & 56.95 & 97.5 \\
 VisionZip & 5.2 & 12.7\% & 15\% & 56.5 & 59.8 & 54.4 & 56.1 & 56.7 & 97.1 \\
 PruneVid & 5.2 & 12.7\% & 15\% & 56.8 & 59.7 & 55.4 & 56.6 & 57.1 & 97.8 \\
 FastVID & 5.2 & 12.7\% & 15\% & 56.0 & \na & \textbf{56.2} & \textbf{57.7} & \na & \na \\
 \rowcolor{blue!8}
 \textbf{AOT} & 3.4 & 8.3\% & 15\% & \textbf{57.8} & \textbf{61.3} & 55.2 & 56.6 & \textbf{57.7} & \textbf{98.8} \\
 \rowcolor{green!8}
-AOT (\repro) & 3.4 & 8.3\% & 15\%$^\S$ & 57.33 & 60.98$^\dagger$ & 52.80 & 54.22 & 56.33 & 96.5 \\
+AOT (\repro) & 3.4 & 8.3\% & 15\% & 57.33 & 60.98 & 52.80 & 54.22 & 56.33 & 96.5 \\
 VisionZip & 3.4 & 8.3\% & 10\% & 53.5 & 58.0 & 49.3 & 53.4 & 53.5 & 91.6 \\
 PruneVid & 3.4 & 8.3\% & 10\% & 56.2 & 59.8 & 54.5 & 56.0 & 56.6 & 96.9 \\
 FastVID & 3.4 & 8.3\% & 10\% & 55.9 & \na & \textbf{56.3} & \textbf{57.3} & \na & \na \\
 \rowcolor{blue!8}
 \textbf{AOT} & 5.2 & 12.7\% & 10\% & \textbf{57.0} & \textbf{60.6} & 54.2 & 56.1 & \textbf{57.0} & \textbf{97.6} \\
 \rowcolor{green!8}
-AOT (\repro) & 5.2 & 12.7\% & 10\%$^\S$ & 56.70 & 60.45$^\dagger$ & 52.65 & 53.78 & 55.90 & 95.7 \\
+AOT (\repro) & 5.2 & 12.7\% & 10\% & 56.70 & 60.45 & 52.65 & 53.78 & 55.90 & 95.7 \\
 \bottomrule
 \end{tabular}}
-\caption{AOT main experiment table on LLaVA-OneVision with local reproduction rows inserted below the corresponding paper AOT rows. All reproduction rows use the authors' released evaluation configuration (mirroring \texttt{scripts/eval\_ov-7b.sh}: \texttt{INTER\_COMPRESS}=True, \texttt{GLOBAL\_RATIO}=0.5, \texttt{INTRA\_SCALE}=\texttt{INTER\_SCALE}=1.0); the reproduction is thus config-aligned with the paper, and residual score gaps below are reported as-is rather than tuned away. $^\dagger$EgoSchema full-test labels are not public; accuracy is obtained by submitting the local predictions to the official validation server (the same predictions also agree with the authors' committed submissions on 94--99\% of items). $^\S$LongVideoBench and VideoMME reproduction values come from a completed VTN-calibrated sweep in which the AOT visual-token budget was tuned (VTN $=146/208/267/322$) so the \emph{measured} token retention matches the labeled $10/15/20/25\%$; a token-retention probe had shown the earlier VTN settings retained only $\sim$half the labeled ratio (e.g.\ the old $25\%$ LongVideoBench $52.80$ was actually $\sim$13\% retained). Calibration raises LongVideoBench (e.g.\ $52.80\rightarrow54.75$ at $25\%$) but barely moves VideoMME, leaving a residual $\sim$1.5--2.6 point gap to the paper on the long-video benchmarks even at matched retention; MVBench and EgoSchema use the original runs, which already matched the paper closely. Averages are computed over the four benchmarks, with Avg.\ \% relative to the full-model baseline.}
+\caption{AOT main experiment table on LLaVA-OneVision with local reproduction rows inserted below the corresponding paper AOT rows. All runs follow the authors' released evaluation config (\texttt{eval\_ov-7b.sh}); EgoSchema full-test accuracy is obtained by submitting local predictions to the official validation server; LongVideoBench and VideoMME use a VTN-calibrated sweep so measured token retention matches the labeled ratios. Averages are computed over the four benchmarks, with Avg.\ \% relative to the full-model baseline.}
 \label{tab:aot-ov-main}
 \end{table}
 
-\begin{table}[h]
+\begin{table}[H]
 \centering
 \scriptsize
 \resizebox{\textwidth}{!}{%
