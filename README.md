@@ -110,6 +110,24 @@ Reproduction of **PruneVid**, **VidCom²**, and **AOT** (training-free video tok
 
 ---
 
+## 4. Qualitative visualizations
+
+Reproductions of each paper's token-selection visualizations on new videos (not the papers' examples), captured from the same instrumented code paths used for the tables above. Scripts: `visualizations/vis_aot.py`, `visualizations/vis_prunevid.py`, `visualizations/vis_vidcom2.py`; all figures: `visualizations/out/`.
+
+**AOT — local/global token anchors** (LLaVA-OV-7B, VTN=126/729 per frame). Green = Local anchors (shallow window CLS attention), orange = Global anchors (deep CLS attention); dimmed patches are merged into anchors via optimal transport:
+
+![AOT anchors](visualizations/out/aot_anchors_cooking_muffins.png)
+
+**PruneVid — static/dynamic split, attention, kept tokens** (PLLaVA-7B, 16 frames, 12x12 grid). Blue = static patches (merged temporally, tau=0.8), orange = dynamic; row 3 is layer-10 question-to-visual attention; row 4 is the LLM-stage top-alpha kept set:
+
+![PruneVid stages](visualizations/out/prunevid_cycling_race.png)
+
+**VidCom2 — frame uniqueness & token allocation** (LLaVA-OV-7B, R=25%). Unique frames get a larger per-frame retention ratio r_t; bottom row shows the retained 14x14 patches:
+
+![VidCom2 uniqueness](visualizations/out/vidcom2_uniqueness_videomme_08km9Yqbt.png)
+
+---
+
 ## Repository contents
 
 | Directory | Description |

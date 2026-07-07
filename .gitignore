@@ -1,6 +1,7 @@
 # --- large data & checkpoints (keep locally, not in git) ---
 PruneVid/MODELS/
 PruneVid/DATAS/
+visualizations/videos/
 **/logs/
 **/test_results/
 **/.cache/

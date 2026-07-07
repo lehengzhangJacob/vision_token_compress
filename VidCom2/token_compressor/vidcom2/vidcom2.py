@@ -1,6 +1,11 @@
+import os
+
 import torch
 import torch.nn.functional as F
 from typing import List, Tuple, Optional, Dict, Any
+
+# Populated during forward only when VIDCOM2_VIS_CAPTURE=1 (offline visualization).
+VIS_CAPTURE = {}
 
 # Configuration: 'mapper' determines the index mapping strategy
 # 'tpf' is default token_per_frame, can be overridden for qwen2_vl
@@ -31,6 +36,13 @@ def vidcom2_compression(flattened_feat: torch.Tensor, model: str = "llava_ov",
     # Strategy: Keep tokens different from both Global Video Mean and Local Frame Mean
     scales = compute_scales(-vid_score.mean(dim=-1), base_scale)
     indices = select_outlier_indices(vid_score + frame_score, scales, tpf)
+
+    if os.getenv("VIDCOM2_VIS_CAPTURE"):
+        VIS_CAPTURE["uniqueness"] = (-vid_score.mean(dim=-1)).detach().float().cpu()  # (T,)
+        VIS_CAPTURE["scales"] = scales.detach().float().cpu()                          # (T,) retention r_t
+        VIS_CAPTURE["fused_scores"] = (vid_score + frame_score).detach().float().cpu() # (T, tpf)
+        VIS_CAPTURE["indices"] = [i.detach().cpu() for i in indices]                   # kept local idx per frame
+        VIS_CAPTURE["tpf"] = tpf
 
     # 3. Index Mapping (Routes to linear or grid mapper)
     return map_features(indices, flattened_feat, img_feat, spec)

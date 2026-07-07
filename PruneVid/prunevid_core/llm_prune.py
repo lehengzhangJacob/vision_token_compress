@@ -1,7 +1,11 @@
 from __future__ import annotations
 
+import os
+
 import numpy as np
 import torch
+
+from .vision_merge import VIS_CAPTURE
 
 
 class VTPWindowCache:
@@ -38,6 +42,9 @@ class VTPWindowCache:
 
         text_to_image_attentions = text_to_image_attentions[0].max(dim=0)[0].max(dim=0)[0]
 
+        if os.getenv("PRUNEVID_VIS_CAPTURE"):
+            VIS_CAPTURE["t2i_scores"] = text_to_image_attentions.detach().float().cpu()
+
         start_idx = 0
         topk_indices_list = []
         for static_size, dynamic_size, window_size in zip(static_sizes, dynamic_sizes, window_sizes):
@@ -64,7 +71,10 @@ class VTPWindowCache:
 
         if not topk_indices_list:
             return torch.empty(0, dtype=torch.long, device=text_to_image_attentions.device)
-        return torch.cat(topk_indices_list, dim=0)
+        topk_indices = torch.cat(topk_indices_list, dim=0)
+        if os.getenv("PRUNEVID_VIS_CAPTURE"):
+            VIS_CAPTURE["topk_indices"] = topk_indices.detach().cpu()
+        return topk_indices
 
     def obtain_language_attention(self, input_ids, attentions, pad_token, text_indices=None):
         pad_token = self.pad_token_id

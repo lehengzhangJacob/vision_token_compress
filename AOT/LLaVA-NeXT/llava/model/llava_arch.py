@@ -42,6 +42,9 @@ try:
 except Exception:
     PruneVidVisionMerger = None
 
+# Token-selection capture for offline visualization (no-op unless AOT_VIS_CAPTURE=1).
+VIS_CAPTURE = {}
+
 
 class LlavaMetaModel:
 
@@ -773,6 +776,11 @@ class LlavaMetaForCausalLM(ABC):
         # Generate index mask
         index_mask = torch.zeros(B, N, dtype=torch.bool, device=image_features.device) # (B, N)
         index_mask.scatter_(1, token_indices, True) # (B, N)
+
+        if os.getenv("AOT_VIS_CAPTURE"):
+            VIS_CAPTURE["local_indices"] = local_indices.detach().cpu()
+            VIS_CAPTURE["global_indices"] = global_indices.detach().cpu()
+            VIS_CAPTURE["index_mask"] = index_mask.detach().cpu()
 
         # image_features = self.get_model().mm_projector(image_features) # (B, N, D)
         image_features = self.get_model().mm_projector(

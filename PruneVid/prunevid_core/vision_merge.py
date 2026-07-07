@@ -1,10 +1,19 @@
 from __future__ import annotations
 
+import os
+
 import torch
 import torch.nn.functional as F
 from torch import einsum
 
 from .clustering import cluster_dpc_knn, refine_clusters, segment_lengths
+
+# Populated during forward only when PRUNEVID_VIS_CAPTURE=1 (offline visualization).
+VIS_CAPTURE = {}
+
+
+def _cap_enabled() -> bool:
+    return bool(os.getenv("PRUNEVID_VIS_CAPTURE"))
 
 
 class PruneVidVisionMerger:
@@ -44,6 +53,8 @@ class PruneVidVisionMerger:
 
     def spatial_merge_tokens(self, feature: torch.Tensor, num_cluster: int, k: int | None = None) -> torch.Tensor:
         cluster_idx, num_cluster = cluster_dpc_knn(feature, cluster_num=num_cluster, k=k or self.knn_k)
+        if _cap_enabled():
+            VIS_CAPTURE["_last_cluster_idx"] = cluster_idx[0].detach().cpu()
         return self.compute_cluster_vectors(feature, cluster_idx, num_cluster=num_cluster)
 
     def merge_frames_dynamic(self, frames: torch.Tensor):
@@ -63,6 +74,12 @@ class PruneVidVisionMerger:
         idx_clusters, _ = cluster_dpc_knn(frames.mean(dim=2), cluster_num=temporal_clusters, k=self.knn_k)
         idx_clusters = refine_clusters(idx_clusters)
         window_list = segment_lengths(idx_clusters)
+
+        if _cap_enabled():
+            VIS_CAPTURE.clear()
+            VIS_CAPTURE["idx_clusters"] = idx_clusters[0].detach().cpu()
+            VIS_CAPTURE["window_list"] = [int(w) for w in window_list[0] if int(w) > 0]
+            VIS_CAPTURE["windows"] = []
 
         static_features = []
         dynamic_features = []
@@ -86,6 +103,8 @@ class PruneVidVisionMerger:
                 -1, window_size, -1, channel_count
             )
 
+            win = {"window_size": window_size, "mask": mask[0].detach().cpu()} if _cap_enabled() else None
+
             static_feat = torch.masked_select(current_frames, mask_expand).view(batch_size, window_size, -1, channel_count)
             static_feat = static_feat.mean(dim=1)
             if static_feat.shape[1] > 14:
@@ -94,11 +113,18 @@ class PruneVidVisionMerger:
                     num_cluster=max(1, int(static_feat.shape[1] * self.cluster_ratio)),
                     k=self.knn_k,
                 )
+                if win is not None:
+                    win["static_cluster_idx"] = VIS_CAPTURE.pop("_last_cluster_idx", None)
+            elif win is not None:
+                win["static_cluster_idx"] = None
             static_features.append(static_feat)
             static_sizes.append(static_feat.shape[1])
+            if win is not None:
+                win["static_size"] = static_feat.shape[1]
 
             dynamic_feat = torch.masked_select(current_frames, ~mask_expand).view(batch_size, window_size, -1, channel_count)
             dynamic_window_list = []
+            dyn_cluster_list = [] if win is not None else None
             for frame_idx in range(window_size):
                 dynamic_feat_window = dynamic_feat[:, frame_idx, :, :]
                 if dynamic_feat_window.shape[1] > 14:
@@ -107,11 +133,19 @@ class PruneVidVisionMerger:
                         num_cluster=max(1, int(dynamic_feat_window.shape[1] * self.cluster_ratio)),
                         k=self.knn_k,
                     )
+                    if dyn_cluster_list is not None:
+                        dyn_cluster_list.append(VIS_CAPTURE.pop("_last_cluster_idx", None))
+                elif dyn_cluster_list is not None:
+                    dyn_cluster_list.append(None)
                 dynamic_window_list.append(dynamic_feat_window)
 
             dynamic_feat = torch.cat(dynamic_window_list, dim=1)
             dynamic_features.append(dynamic_feat)
             dynamic_sizes.append(dynamic_feat.shape[1])
+            if win is not None:
+                win["dynamic_cluster_idx"] = dyn_cluster_list
+                win["dynamic_size"] = dynamic_feat.shape[1]
+                VIS_CAPTURE["windows"].append(win)
 
             start_idx += window_size
 
