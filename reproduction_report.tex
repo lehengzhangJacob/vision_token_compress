@@ -63,7 +63,13 @@ LLaVA-OneVision w/ Ours (\repro, self-port) & 17.0\% & 0.20$\times$ & 57.23 & 58
 \begin{figure}[H]
 \centering
 \includegraphics[width=\textwidth]{visualizations/out/prunevid_cycling_race.png}
-\caption{Qualitative visualization of PruneVid's stages on a new cycling-race video (PLLaVA-7B, 16 frames, $12\times12$ grid), captured from the same instrumented code path as the table above. Row 2: static (\textcolor[RGB]{70,130,220}{blue}) vs.\ dynamic (\textcolor[RGB]{220,120,0}{orange}) patches ($\tau=0.8$) --- the moving peloton is dynamic while road and background are static and merged temporally. Row 3: layer-10 question-to-visual attention broadcast back to patches. Row 4: tokens kept by the LLM-stage top-$\alpha$ selection ($\alpha=0.4$), which tracks the cyclists. More examples in \texttt{visualizations/out/}.}
+\caption{Qualitative visualization of PruneVid's stages on a new cycling-race video (PLLaVA-7B, 16 frames, $12\times12$ grid), captured from the same instrumented code path as the table above. Row 2: static (\textcolor[RGB]{70,130,220}{blue}) vs.\ dynamic (\textcolor[RGB]{220,120,0}{orange}) patches ($\tau=0.8$) --- the moving peloton is dynamic while road and background are static and merged temporally. Row 3: layer-10 question-to-visual attention broadcast back to patches (smoothed, as in the paper). Row 4: tokens kept by the LLM-stage top-$\alpha$ selection ($\alpha=0.4$), which tracks the cyclists. More examples in \texttt{visualizations/out/}.}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{visualizations/out/prunevid_attn_layers_cycling_race.png}
+\caption{Question-to-visual attention across LLM layers on the same video, mirroring the attention-evolution visualization in the PruneVid paper (Fig.~1c). Attention is max-pooled over heads and question tokens, broadcast back to patches through the merge metadata, and rendered as smoothed heatmaps. Tokens are pruned after layer 10 ($\alpha=0.4$), so layers 20/30 attend only to the kept tokens; attention progressively concentrates on the question-relevant regions (the peloton).}
 \end{figure}
 
 \section{VidCom$^2$}

@@ -18,6 +18,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 import math
+import os
 from dataclasses import dataclass
 from typing import List, Optional, Tuple, Union
 
@@ -1436,6 +1437,12 @@ class LlamaModelVTP(LlamaModel):
             else:
                 output_attentions = False
 
+            # Extra attention taps for offline visualization (no-op unless
+            # PRUNEVID_VIS_ATTN_LAYERS is set, e.g. "5,10,20,30").
+            _vis_layers = os.environ.get("PRUNEVID_VIS_ATTN_LAYERS")
+            if _vis_layers and hidden_states.shape[1] > 1 and layer_idx in {int(x) for x in _vis_layers.split(",")}:
+                output_attentions = True
+
             if output_hidden_states:
                 all_hidden_states += (hidden_states,)
             if self.gradient_checkpointing and self.training:
@@ -1469,6 +1476,21 @@ class LlamaModelVTP(LlamaModel):
             
             if output_attentions:
                 all_self_attns += (layer_outputs[1],)
+
+            # Offline visualization: pool text->image attention at tapped layers.
+            if _vis_layers and hidden_states.shape[1] > 1 and layer_idx in {int(x) for x in _vis_layers.split(",")}:
+                try:
+                    from prunevid_core.vision_merge import VIS_CAPTURE as _VC
+                    _att = layer_outputs[1]
+                    if layer_idx <= self.selected_layer:
+                        _, _img_pos = torch.where(input_ids_new == self.pad_token_id)
+                        _s, _e = _img_pos[0].item(), _img_pos[-1].item()
+                    else:
+                        _s, _e = self.cache.img_start, self.cache.img_end
+                    _t2i = _att[0, :, _e + 1:, _s:_e + 1].max(dim=0)[0].max(dim=0)[0]
+                    _VC.setdefault("layer_attn", {})[layer_idx] = _t2i.detach().float().cpu()
+                except Exception:
+                    pass
 
             # used for LLM-VTP
             if layer_idx==self.selected_layer and (hidden_states.shape[1] > 1):

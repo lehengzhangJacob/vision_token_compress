@@ -59,8 +59,11 @@ def overlay_cells(frame: np.ndarray, grid_mask: np.ndarray, color, alpha: float 
 
 
 def overlay_heatmap(frame: np.ndarray, grid_scores: np.ndarray, alpha: float = 0.55,
-                    cmap_name: str = "jet") -> np.ndarray:
-    """Overlay a (gh, gw) float score grid as a colormap heatmap."""
+                    cmap_name: str = "jet", smooth: bool = False) -> np.ndarray:
+    """Overlay a (gh, gw) float score grid as a colormap heatmap.
+
+    smooth=True upsamples with bicubic interpolation + Gaussian blur (paper-style
+    smooth attention maps) instead of blocky nearest-neighbor cells."""
     import matplotlib.cm as cm
     h, w = frame.shape[:2]
     g = grid_scores.astype(np.float32)
@@ -68,7 +71,14 @@ def overlay_heatmap(frame: np.ndarray, grid_scores: np.ndarray, alpha: float = 0
         g = (g - g.min()) / (g.max() - g.min())
     else:
         g = np.zeros_like(g)
-    up = upsample_grid(g, h, w)
+    if smooth:
+        from PIL import ImageFilter
+        im = Image.fromarray((g * 255).astype(np.uint8), mode="L")
+        im = im.resize((w, h), Image.BICUBIC)
+        im = im.filter(ImageFilter.GaussianBlur(radius=max(2, min(h, w) // 60)))
+        up = np.asarray(im).astype(np.float32) / 255.0
+    else:
+        up = upsample_grid(g, h, w)
     heat = (cm.get_cmap(cmap_name)(up)[..., :3] * 255).astype(np.float32)
     out = frame.astype(np.float32) * (1 - alpha) + heat * alpha
     return out.clip(0, 255).astype(np.uint8)

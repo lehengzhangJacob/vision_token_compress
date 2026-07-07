@@ -26,9 +26,13 @@ Reproduction of **PruneVid**, **VidCom²**, and **AOT** (training-free video tok
 
 > PruneVid main experiment table with local reproduction rows inserted below the paper Ours rows. PLLaVA uses the released implementation; ST-LLM and LLaVA-OneVision are self-ported because the official repository marks those PruneVid backbones as not yet released.
 
-**PruneVid qualitative visualization — static/dynamic split, attention, kept tokens** on a new cycling-race video (PLLaVA-7B, 16 frames, 12x12 grid). Blue = static patches (merged temporally, tau=0.8), orange = dynamic; row 3 is layer-10 question-to-visual attention; row 4 is the LLM-stage top-alpha kept set. Script: `visualizations/vis_prunevid.py`; more examples in `visualizations/out/`.
+**PruneVid qualitative visualization — static/dynamic split, attention, kept tokens** on a new cycling-race video (PLLaVA-7B, 16 frames, 12x12 grid). Blue = static patches (merged temporally, tau=0.8), orange = dynamic; row 3 is layer-10 question-to-visual attention (smoothed, as in the paper); row 4 is the LLM-stage top-alpha kept set. Script: `visualizations/vis_prunevid.py`; more examples in `visualizations/out/`.
 
 ![PruneVid stages](visualizations/out/prunevid_cycling_race.png)
+
+**Attention across LLM layers** (paper Fig. 1c style) — smoothed question-to-visual attention at layers 5/10/20/30; tokens are pruned after layer 10, so deeper layers attend only to kept tokens:
+
+![PruneVid attention across layers](visualizations/out/prunevid_attn_layers_cycling_race.png)
 
 ## 2. VidCom²
 
