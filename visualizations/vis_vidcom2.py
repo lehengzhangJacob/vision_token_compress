@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 """VidCom2 qualitative visualization (paper Fig. "frame_score_vis" style).
 
-Per video: a strip of sampled frames, per-frame uniqueness bars (taller/darker =
-more unique -> more tokens kept), the dynamic retention rate r_t, and an extra
-row showing which 14x14 patches were actually kept per frame.
+Per video: ALL 32 sampled frames in two staggered rows (even frames on top,
+odd frames offset by half a cell below), per-frame uniqueness bars (taller/
+darker = more unique -> more tokens kept) with the dynamic retention rate r_t,
+and the kept 14x14 patches per frame in the same staggered two-row layout.
 
 Runs LLaVA-OneVision-7B with the VidCom2 compressor (R_RATIO=0.25, same as the
 Table-2 repro config); scores/indices captured via VIDCOM2_VIS_CAPTURE=1.
@@ -45,7 +46,6 @@ def main():
     ap.add_argument("--videos", nargs="+", required=True)
     ap.add_argument("--out-dir", default="/home/msj_team/Jacob/nk/visualizations/out")
     ap.add_argument("--num-frames", type=int, default=32)
-    ap.add_argument("--show-frames", type=int, default=16)
     a = ap.parse_args()
 
     tokenizer, model, image_processor, _ = load_pretrained_model(
@@ -76,44 +76,50 @@ def main():
         indices = [i.numpy() for i in VIS_CAPTURE["indices"]]
         T = len(uniq)
         u = (uniq - uniq.min()) / (uniq.max() - uniq.min() + 1e-9)
-
-        sel = np.linspace(0, T - 1, a.show_frames).astype(int)
-        n = len(sel)
         cmap = plt.get_cmap("plasma")
 
-        fig = plt.figure(figsize=(1.55 * n, 6.2))
-        gs = fig.add_gridspec(3, n, height_ratios=[1.5, 1.0, 1.5], hspace=0.25, wspace=0.04)
+        # All T frames, two staggered rows: even frames on top (cols t..t+2),
+        # odd frames below shifted by half a cell -> brick-like interleaving.
+        ncols = T + 1
+        fig = plt.figure(figsize=(0.82 * T, 10.0))
+        gs = fig.add_gridspec(5, ncols, height_ratios=[1.25, 1.25, 0.9, 1.25, 1.25],
+                              hspace=0.35, wspace=0.05)
 
-        for c, t in enumerate(sel):
-            ax = fig.add_subplot(gs[0, c])
-            ax.imshow(frames[t])
-            ax.set_title(f"f{t}", fontsize=8)
-            ax.axis("off")
+        def staggered(row0, imgs, titles):
+            for t in range(T):
+                r = row0 if t % 2 == 0 else row0 + 1
+                ax = fig.add_subplot(gs[r, t:t + 2])
+                ax.imshow(imgs[t])
+                ax.set_title(titles[t], fontsize=6.5, pad=1.5)
+                ax.axis("off")
 
-        axb = fig.add_subplot(gs[1, :])
+        staggered(0, frames, [f"f{t}" for t in range(T)])
+
+        axb = fig.add_subplot(gs[2, :])
         colors = [cmap(0.15 + 0.8 * u[t]) for t in range(T)]
         axb.bar(np.arange(T), u, color=colors, width=0.82)
-        for t in sel:
-            axb.text(t, u[t] + 0.03, f"{scales[t] * 100:.0f}%", ha="center", fontsize=7, rotation=90)
+        for t in range(T):
+            axb.text(t, u[t] + 0.03, f"{scales[t] * 100:.0f}%", ha="center", fontsize=6.5, rotation=90)
         axb.set_xlim(-0.6, T - 0.4)
-        axb.set_ylim(0, 1.25)
+        axb.set_ylim(0, 1.3)
+        axb.set_xticks(np.arange(0, T, 2))
         axb.set_ylabel("frame uniqueness", fontsize=9)
         axb.set_xlabel("frame index (labels above bars = retained token ratio $r_t$)", fontsize=9)
         axb.spines[["top", "right"]].set_visible(False)
 
-        for c, t in enumerate(sel):
-            ax = fig.add_subplot(gs[2, c])
+        kept_imgs, kept_titles = [], []
+        for t in range(T):
             m = np.zeros(GRID * GRID, bool)
             m[indices[t]] = True
             ov = overlay_cells(frames[t], m.reshape(GRID, GRID), GREEN, alpha=0.35, dim_bg=0.25)
-            ov = draw_grid_lines(ov, GRID, GRID)
-            ax.imshow(ov)
-            ax.set_title(f"kept {len(indices[t])}/196", fontsize=7)
-            ax.axis("off")
+            kept_imgs.append(draw_grid_lines(ov, GRID, GRID))
+            kept_titles.append(f"{len(indices[t])}/196")
+        staggered(3, kept_imgs, kept_titles)
 
         name = os.path.splitext(os.path.basename(vp))[0]
         fig.suptitle(f"VidCom$^2$ frame uniqueness & token allocation  (LLaVA-OV-7B, R={rr:.0%}, "
-                     f"mean kept {np.mean([len(i) for i in indices]) / 1.96:.1f}%)", fontsize=12)
+                     f"all {T} sampled frames, mean kept {np.mean([len(i) for i in indices]) / 1.96:.1f}%)",
+                     fontsize=13)
         base = os.path.join(a.out_dir, f"vidcom2_uniqueness_{name}")
         fig.savefig(base + ".png", dpi=150, bbox_inches="tight")
         fig.savefig(base + ".pdf", bbox_inches="tight")
