@@ -26,6 +26,10 @@ Reproduction of **PruneVid**, **VidCom²**, and **AOT** (training-free video tok
 
 > PruneVid main experiment table with local reproduction rows inserted below the paper Ours rows. PLLaVA uses the released implementation; ST-LLM and LLaVA-OneVision are self-ported because the official repository marks those PruneVid backbones as not yet released.
 
+**PruneVid qualitative visualization — static/dynamic split, attention, kept tokens** on a new cycling-race video (PLLaVA-7B, 16 frames, 12x12 grid). Blue = static patches (merged temporally, tau=0.8), orange = dynamic; row 3 is layer-10 question-to-visual attention; row 4 is the LLM-stage top-alpha kept set. Script: `visualizations/vis_prunevid.py`; more examples in `visualizations/out/`.
+
+![PruneVid stages](visualizations/out/prunevid_cycling_race.png)
+
 ## 2. VidCom²
 
 | Backbone | Method / Ratio | MVBench | LongVideoBench | MLVU | VideoMME | Short | Medium | Long | Average (%) |
@@ -57,6 +61,10 @@ Reproduction of **PruneVid**, **VidCom²**, and **AOT** (training-free video tok
 | LLaVA-Video-7B | VidCom², R=15% *(Reproduce)* | 53.33 | 52.28 | 54.94 | 58.22 | 68.00 | 56.89 | 49.78 | 88.0 |
 
 > VidCom² main experiment table with local LLaVA-OV and LLaVA-Video reproduction rows inserted below the corresponding paper rows. Average(%) follows the paper's convention: the row's 7-column sum (MVBench, LongVideoBench, MLVU, VideoMME, Short/Medium/Long) divided by the corresponding Upper-bound row's 7-column sum. Reproduced Average(%) matches the paper within ≤0.5 pts on all four rows (OV R=25%: 99.3 vs 99.6; OV R=15%: 95.2 vs 95.1; Video R=25%: 93.5 vs 93.6; Video R=15%: 88.0 vs 88.5).
+
+**VidCom² qualitative visualization — frame uniqueness & token allocation** on a new Video-MME astronomy video (LLaVA-OV-7B, R=25%). Unique frames get a larger per-frame retention ratio r_t; bottom row shows the retained 14x14 patches. Script: `visualizations/vis_vidcom2.py`; more examples in `visualizations/out/`.
+
+![VidCom2 uniqueness](visualizations/out/vidcom2_uniqueness_videomme_08km9Yqbt.png)
 
 ## 3. AOT
 
@@ -108,23 +116,9 @@ Reproduction of **PruneVid**, **VidCom²**, and **AOT** (training-free video tok
 
 > AOT main experiment table on LLaVA-Video with local reproduction rows inserted below the corresponding paper AOT rows. ‡EgoSchema full-test labels are not public; accuracy is obtained by submitting the local predictions to the official validation server. Averages are computed over the four benchmarks, with Avg. % relative to the full-model baseline.
 
----
-
-## 4. Qualitative visualizations
-
-Reproductions of each paper's token-selection visualizations on new videos (not the papers' examples), captured from the same instrumented code paths used for the tables above. Scripts: `visualizations/vis_aot.py`, `visualizations/vis_prunevid.py`, `visualizations/vis_vidcom2.py`; all figures: `visualizations/out/`.
-
-**AOT — local/global token anchors** (LLaVA-OV-7B, VTN=126/729 per frame). Green = Local anchors (shallow window CLS attention), orange = Global anchors (deep CLS attention); dimmed patches are merged into anchors via optimal transport:
+**AOT qualitative visualization — local/global token anchors** on a new cooking video (LLaVA-OV-7B, VTN=126/729 per frame). Green = Local anchors (shallow window CLS attention), orange = Global anchors (deep CLS attention); dimmed patches are merged into anchors via optimal transport. Script: `visualizations/vis_aot.py`; more examples in `visualizations/out/`.
 
 ![AOT anchors](visualizations/out/aot_anchors_cooking_muffins.png)
-
-**PruneVid — static/dynamic split, attention, kept tokens** (PLLaVA-7B, 16 frames, 12x12 grid). Blue = static patches (merged temporally, tau=0.8), orange = dynamic; row 3 is layer-10 question-to-visual attention; row 4 is the LLM-stage top-alpha kept set:
-
-![PruneVid stages](visualizations/out/prunevid_cycling_race.png)
-
-**VidCom2 — frame uniqueness & token allocation** (LLaVA-OV-7B, R=25%). Unique frames get a larger per-frame retention ratio r_t; bottom row shows the retained 14x14 patches:
-
-![VidCom2 uniqueness](visualizations/out/vidcom2_uniqueness_videomme_08km9Yqbt.png)
 
 ---
 

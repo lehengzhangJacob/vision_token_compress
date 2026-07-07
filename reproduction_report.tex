@@ -60,6 +60,12 @@ LLaVA-OneVision w/ Ours (\repro, self-port) & 17.0\% & 0.20$\times$ & 57.23 & 58
 \label{tab:prunevid-main}
 \end{table}
 
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{visualizations/out/prunevid_cycling_race.png}
+\caption{Qualitative visualization of PruneVid's stages on a new cycling-race video (PLLaVA-7B, 16 frames, $12\times12$ grid), captured from the same instrumented code path as the table above. Row 2: static (\textcolor[RGB]{70,130,220}{blue}) vs.\ dynamic (\textcolor[RGB]{220,120,0}{orange}) patches ($\tau=0.8$) --- the moving peloton is dynamic while road and background are static and merged temporally. Row 3: layer-10 question-to-visual attention broadcast back to patches. Row 4: tokens kept by the LLM-stage top-$\alpha$ selection ($\alpha=0.4$), which tracks the cyclists. More examples in \texttt{visualizations/out/}.}
+\end{figure}
+
 \section{VidCom$^2$}
 
 \begin{table}[H]
@@ -109,6 +115,12 @@ LLaVA-Video-7B & VidCom$^2$, $R=15\%$ (\repro) & 53.33 & 52.28 & 54.94 & 58.22 &
 \caption{VidCom$^2$ main experiment table with local LLaVA-OV and LLaVA-Video reproduction rows inserted below the corresponding paper rows. Average(\%) follows the paper's convention: the row's 7-column sum (MVBench, LongVideoBench, MLVU, VideoMME, Short/Medium/Long) divided by the corresponding Upper-bound row's 7-column sum. Reproduced Average(\%) matches the paper within $\le0.5$ pts on all four rows (OV $R{=}25\%$: 99.3 vs 99.6; OV $R{=}15\%$: 95.2 vs 95.1; Video $R{=}25\%$: 93.5 vs 93.6; Video $R{=}15\%$: 88.0 vs 88.5).}
 \label{tab:vidcom-main}
 \end{table}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{visualizations/out/vidcom2_uniqueness_videomme_08km9Yqbt.png}
+\caption{Qualitative visualization of VidCom$^2$ frame uniqueness and token allocation on a new Video-MME astronomy video (LLaVA-OV-7B, $R=25\%$). Taller/brighter bars mark more unique frames, which receive a larger per-frame retention ratio $r_t$ (labels above bars); visually redundant frames are compressed harder. Bottom: the retained $14\times14$ patches per frame. More examples in \texttt{visualizations/out/}.}
+\end{figure}
 
 \section{AOT}
 
@@ -186,26 +198,10 @@ AOT (\repro) & 9.3 & 11.6\% & 15\% & 57.98 & 55.08$^\ddagger$ & 55.42 & 62.11 & 
 \label{tab:aot-video-main}
 \end{table}
 
-\section{Qualitative Visualizations}
-
-Following the qualitative figures in the three papers, we reproduce their token-selection visualizations on new videos (a cooking clip, a cycling race, a Video-MME astronomy video, and a long MLVU film clip; none are the papers' original examples). The selection decisions are captured from the same instrumented code paths used in the quantitative reproduction. One example per method is shown below; the full set is under \texttt{visualizations/out/}.
-
 \begin{figure}[H]
 \centering
 \includegraphics[width=\textwidth]{visualizations/out/aot_anchors_cooking_muffins.png}
-\caption{AOT local/global token anchors on a cooking video (LLaVA-OV-7B, VTN$=126/729$ per frame). Top: sampled frames; bottom: \textcolor[RGB]{30,150,80}{green} = Local anchors (shallow-layer window CLS attention), \textcolor[RGB]{220,120,0}{orange} = Global anchors (deep-layer CLS attention); unselected patches are dimmed and later merged into the anchors via optimal transport. Anchors concentrate on the girl's face, hands, and the chocolate she is dipping.}
-\end{figure}
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=\textwidth]{visualizations/out/prunevid_cycling_race.png}
-\caption{PruneVid stages on a cycling-race video (PLLaVA-7B, 16 frames, $12\times12$ grid). Row 2: static (\textcolor[RGB]{70,130,220}{blue}) vs.\ dynamic (\textcolor[RGB]{220,120,0}{orange}) patches ($\tau=0.8$) --- the moving peloton is dynamic while road and background are static and merged temporally. Row 3: layer-10 question-to-visual attention broadcast back to patches. Row 4: tokens kept by the LLM-stage top-$\alpha$ selection ($\alpha=0.4$), which tracks the cyclists.}
-\end{figure}
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=\textwidth]{visualizations/out/vidcom2_uniqueness_videomme_08km9Yqbt.png}
-\caption{VidCom$^2$ frame uniqueness and token allocation on a Video-MME astronomy video (LLaVA-OV-7B, $R=25\%$). Taller/brighter bars mark more unique frames, which receive a larger per-frame retention ratio $r_t$ (labels above bars); visually redundant frames are compressed harder. Bottom: the retained $14\times14$ patches per frame.}
+\caption{Qualitative visualization of AOT's local/global token anchors on a new cooking video (LLaVA-OV-7B, VTN$=126/729$ per frame), captured from the same instrumented code path as the tables above. Top: sampled frames; bottom: \textcolor[RGB]{30,150,80}{green} = Local anchors (shallow-layer window CLS attention), \textcolor[RGB]{220,120,0}{orange} = Global anchors (deep-layer CLS attention); unselected patches are dimmed and later merged into the anchors via optimal transport. Anchors concentrate on the girl's face, hands, and the chocolate she is dipping. More examples in \texttt{visualizations/out/}.}
 \end{figure}
 
 \end{document}
