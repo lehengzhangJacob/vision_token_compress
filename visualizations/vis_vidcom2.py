@@ -99,7 +99,7 @@ def main():
         colors = [cmap(0.15 + 0.8 * u[t]) for t in range(T)]
         axb.bar(np.arange(T), u, color=colors, width=0.82)
         for t in range(T):
-            axb.text(t, u[t] + 0.03, f"{scales[t] * 100:.0f}%", ha="center", fontsize=6.5, rotation=90)
+            axb.text(t, u[t] + 0.03, f"{scales[t] * 100:.2f}%", ha="center", fontsize=6, rotation=90)
         axb.set_xlim(-0.6, T - 0.4)
         axb.set_ylim(0, 1.3)
         axb.set_xticks(np.arange(0, T, 2))
